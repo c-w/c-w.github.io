@@ -32,3 +32,24 @@ li {
 li:last-child {
   margin-bottom: 0;
 }
+
+@media print {
+  body {
+    font-size: 1em;
+    padding: 0;
+  }
+
+  h1, h2 {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 1em 0;
+  }
+
+  a {
+    font-weight: 400;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
