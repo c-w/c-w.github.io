@@ -1,0 +1,33 @@
+body {
+  margin: auto;
+  max-width: 32em;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  letter-spacing: 0.01em;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+  text-rendering: optimizeLegibility;
+  background-color: #FDFDFD;
+  color: #2F2F2F;
+}
+
+h2 {
+  margin-top: 1.25em;
+}
+
+a {
+  color: #466DB2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+li {
+  margin-bottom: 0.75em;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
