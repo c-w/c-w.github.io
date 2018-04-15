@@ -45,7 +45,7 @@
 
     @media print {
       body {
-        font-size: 0.85em;
+        font-size: 1em;
         padding: 0;
       }
 
@@ -62,17 +62,21 @@
       p {
         text-align: justify;
       }
+
+      #miscellanea {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <section>
+  <section id="about-me">
     <h1>Hi, I'm Clemens</h1>
     <p>
       I'm an experienced software engineer at Microsoft in New York City (ex-Amazon). I work on diverse <em>cutting-edge projects</em> with partners and develop <em>open source solutions</em>. I'm also the lead engineer of <a href="//ascoderu.ca">Ascoderu</a>, a tech-for-good non-profit.
     </p>
   </section>
-  <section>
+  <section id="software-development">
     <h2>Software development</h2>
     <p>
       I've worked on all levels of the stack, from <em>frontend</em> (React, TypeScript) to <em>backend</em> (Node, Python, Java, Scala, C#) to <em>devops</em> (Bash, Docker, Kubernetes, Azure) to <em>machine learning</em> (Scikit-Learn).
@@ -84,7 +88,7 @@
       You can learn more about me on <a href="//www.linkedin.com/in/clemens-wolff/">LinkedIn</a> and you can view some of my code on <a href="//github.com/c-w">Github</a>.
     </p>
   </section>
-  <section>
+  <section id="technical-writing">
     <h2>Technical writing</h2>
     <p>
       I've published a number of articles, including:
@@ -99,7 +103,7 @@
       </ul>
     </p>
   </section>
-  <section>
+  <section id="miscellanea">
     <h2>Miscellanea</h2>
     <p>
       I read and <a href="/readings-blog/">review</a> software-related books.
