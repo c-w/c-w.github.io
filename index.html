@@ -9,6 +9,10 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <style>
     body {
+      background-color: #FDFDFD;
+    }
+
+    #content {
       margin: auto;
       max-width: 32em;
       font-size: 1.1em;
@@ -16,9 +20,14 @@
       letter-spacing: 0.01em;
       font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
       text-rendering: optimizeLegibility;
-      background-color: #FDFDFD;
       color: #2F2F2F;
-      padding: 2em;
+      padding: 1em 2em;
+    }
+
+    #chart {
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
     }
 
     h2 {
@@ -41,6 +50,12 @@
 
     li:last-child {
       margin-bottom: 0;
+    }
+
+    @media (max-width: 700px) {
+      #chart {
+        display: none;
+      }
     }
 
     @media print {
@@ -70,6 +85,8 @@
   </style>
 </head>
 <body>
+  <a href="//github.com/c-w" aria-hidden="true"><img src="//ghchart.rshah.org/c-w" alt="Clemens Wolff's Github chart" id="chart" /></a>
+  <div id="content">
   <section id="about-me">
     <h1>Hi, I'm Clemens</h1>
     <p>
@@ -123,5 +140,6 @@
       I'm married to the amazing <a href="//koalacoder.com">Laura Barluzzi</a>.
     </p>
   </section>
+  </div>
 </body>
 </html>
