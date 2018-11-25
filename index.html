@@ -161,17 +161,22 @@
   </noscript>
   <script>
     (function() {
-      var revealBody = function() {
-        document.body.className = document.body.className.replace(/\bhidden\b/, '');
+      var removeClass = function(node, className) {
+        var classNameRegExp = new RegExp('\\b' + className + '\\b');
+        node.className = node.className.replace(classNameRegExp, '');
+      };
+
+      var forceImageLoad = function(img) {
+        var imageSrc = img.src;
+        img.src = '';
+        img.src = imageSrc;
       };
 
       document.addEventListener('DOMContentLoaded', function() {
         var chart = document.getElementById('chart');
-        chart.addEventListener('load', revealBody);
-        chart.addEventListener('error', function() { revealBody(); chart.remove(); });
-        var imageSrc = chart.src;
-        chart.src = '';
-        chart.src = imageSrc;
+        chart.addEventListener('load', function() { removeClass(document.body, 'hidden'); });
+        chart.addEventListener('error', function() { removeClass(document.body, 'hidden'); chart.remove(); });
+        forceImageLoad(chart);
       });
     }());
   </script>
