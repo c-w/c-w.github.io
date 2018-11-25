@@ -165,10 +165,11 @@
         document.body.className = document.body.className.replace(/\bhidden\b/, '');
       };
 
-      var chart = document.getElementById('chart');
-
-      chart.addEventListener('load', revealBody);
-      chart.addEventListener('error', function() { revealBody(); chart.remove(); });
+      document.addEventListener('DOMContentLoaded', function() {
+        var chart = document.getElementById('chart');
+        chart.addEventListener('load', revealBody);
+        chart.addEventListener('error', function() { revealBody(); chart.remove(); });
+      });
     }());
   </script>
 </body>
