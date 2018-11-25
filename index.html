@@ -10,6 +10,7 @@
   <style>
     body {
       background-color: #FDFDFD;
+      transition: opacity 0.25s ease-in;
     }
 
     #content {
@@ -52,9 +53,17 @@
       margin-bottom: 0;
     }
 
+    .hidden {
+      opacity: 0;
+    }
+
     @media (max-width: 700px) {
       #chart {
         display: none;
+      }
+
+      .hidden {
+        opacity: 1;
       }
     }
 
@@ -78,14 +87,16 @@
         text-align: justify;
       }
 
-      #miscellanea {
+      #miscellanea, #chart {
         display: none;
       }
     }
   </style>
 </head>
-<body>
-  <a href="//github.com/c-w" aria-hidden="true"><img src="//ghchart.rshah.org/c-w" alt="Clemens Wolff's Github chart" id="chart" /></a>
+<body class="hidden">
+  <a href="//github.com/c-w" aria-hidden="true">
+    <img src="//ghchart.rshah.org/c-w" alt="Clemens Wolff's Github chart" id="chart" />
+  </a>
   <div id="content">
   <section id="about-me">
     <h1>Hi, I'm Clemens</h1>
@@ -141,5 +152,24 @@
     </p>
   </section>
   </div>
+  <noscript>
+    <style>
+      .hidden {
+        opacity: 1 !important;
+      }
+    </style>
+  </noscript>
+  <script>
+    (function() {
+      var revealBody = function() {
+        document.body.className = document.body.className.replace(/\bhidden\b/, '');
+      };
+
+      var chart = document.getElementById('chart');
+
+      chart.addEventListener('load', revealBody);
+      chart.addEventListener('error', function() { revealBody(); chart.remove(); });
+    }());
+  </script>
 </body>
 </html>
