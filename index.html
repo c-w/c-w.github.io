@@ -169,6 +169,8 @@
         var chart = document.getElementById('chart');
         chart.addEventListener('load', revealBody);
         chart.addEventListener('error', function() { revealBody(); chart.remove(); });
+        chart.src = '';
+        chart.src = '//ghchart.rshah.org/c-w';
       });
     }());
   </script>
