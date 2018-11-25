@@ -161,8 +161,7 @@
   </noscript>
   <script>
     (function() {
-      var removeClass = function(node, className) {
-        var classNameRegExp = new RegExp('\\b' + className + '\\b');
+      var removeClass = function(node, classNameRegExp) {
         node.className = node.className.replace(classNameRegExp, '');
       };
 
@@ -173,9 +172,12 @@
       };
 
       document.addEventListener('DOMContentLoaded', function() {
+        var hidden = /\bhidden\b/;
         var chart = document.getElementById('chart');
-        chart.addEventListener('load', function() { removeClass(document.body, 'hidden'); });
-        chart.addEventListener('error', function() { removeClass(document.body, 'hidden'); chart.remove(); });
+        var body = document.body;
+
+        chart.addEventListener('load', function() { removeClass(body, hidden); });
+        chart.addEventListener('error', function() { removeClass(body, hidden); chart.remove(); });
         forceImageLoad(chart);
       });
     }());
