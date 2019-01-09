@@ -12,7 +12,7 @@ git checkout --orphan gh-pages
 git ls-files -z | xargs -0 git rm --cached --force
 
 git add github.svg favicon.ico index.html CNAME
-git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
+git commit --message "$(printf "Travis build ${TRAVIS_BUILD_NUMBER}\n\n${TRAVIS_BUILD_WEB_URL}")"
 
 user="$(git remote get-url origin | cut -d'/' -f4)"
 repo="$(git remote get-url origin | cut -d'/' -f5)"
