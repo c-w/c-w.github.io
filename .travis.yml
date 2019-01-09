@@ -3,3 +3,7 @@ node_js: node
 
 script:
   - npm run lint
+
+after_success:
+  - .travis/fetch-github-chart.sh
+  - .travis/commit-and-push.sh
