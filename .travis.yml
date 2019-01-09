@@ -10,6 +10,6 @@ script:
   - npm run lint
 
 after_success:
-  - npm run build
+  - npm run build && mv build.html index.html
   - .travis/fetch-github-chart.sh
   - .travis/commit-and-push.sh
