@@ -6,10 +6,13 @@ branches:
   only:
   - development
 
-script:
-  - npm run lint
+stages:
+  - lint
+  - deploy
 
-after_success:
-  - npm run build && mv build.html index.html
-  - .travis/fetch-github-chart.sh
-  - .travis/commit-and-push.sh
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: deploy
+      script: .travis/cd.sh
