@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "static -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "lint.html": "htmllint index.html",
     "lint.js": "eslint index.html",
     "lint.css": "stylelint index.html",
@@ -12,6 +13,7 @@
     "eslint": "^5.12.0",
     "eslint-plugin-html": "^5.0.0",
     "htmllint-cli": "0.0.7",
+    "node-static": "^0.7.11",
     "npm-run-all": "^4.1.5",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0"
