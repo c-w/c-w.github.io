@@ -14,5 +14,7 @@ git ls-files -z | xargs -0 git rm --cached --force
 git add github.svg favicon.ico index.html CNAME
 git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
 
-git remote add upstream "https://${GITHUB_TOKEN}@github.com/c-w/c-w.github.io.git"
+user="$(git remote get-url origin | cut -d'/' -f4)"
+repo="$(git remote get-url origin | cut -d'/' -f5)"
+git remote add upstream "https://${GITHUB_TOKEN}@github.com/${user}/${repo}"
 git push --force upstream gh-pages:master
