@@ -10,5 +10,6 @@ script:
   - npm run lint
 
 after_success:
+  - npm run build
   - .travis/fetch-github-chart.sh
   - .travis/commit-and-push.sh

@@ -7,93 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <style>
-    body {
-      background-color: #fdfdfd;
-      transition: opacity 0.25s ease-in;
-    }
-
-    #content {
-      margin: auto;
-      max-width: 32em;
-      font-size: 1.1em;
-      line-height: 1.5em;
-      letter-spacing: 0.01em;
-      font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-      text-rendering: optimizeLegibility;
-      color: #2f2f2f;
-      padding: 1em 2em;
-    }
-
-    #chart {
-      margin: 0 auto;
-      display: block;
-      max-width: 100%;
-    }
-
-    h2 {
-      margin-top: 1.25em;
-    }
-
-    a {
-      color: #466db2;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    li {
-      margin-bottom: 0.75em;
-    }
-
-    li:last-child {
-      margin-bottom: 0;
-    }
-
-    .hidden {
-      opacity: 0;
-    }
-
-    @media (max-width: 700px) {
-      #chart {
-        display: none;
-      }
-
-      .hidden {
-        opacity: 1;
-      }
-    }
-
-    @media print {
-      body {
-        font-size: 0.75em;
-        padding: 0;
-      }
-
-      h1,
-      h2 {
-        text-align: center;
-        font-size: 1.2em;
-        margin: 1em 0;
-      }
-
-      a {
-        font-weight: 400;
-      }
-
-      p {
-        text-align: justify;
-      }
-
-      #miscellanea,
-      #chart {
-        display: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body class="hidden">
   <a href="//github.com/c-w" aria-hidden="true">
@@ -155,34 +69,8 @@
   </section>
   </div>
   <noscript>
-    <style>
-      .hidden { /* stylelint-disable-line no-duplicate-selectors */
-        opacity: 1 !important;
-      }
-    </style>
+    <link rel="stylesheet" href="./noscript.css">
   </noscript>
-  <script>
-    (function() {
-      var removeClass = function(node, classNameRegExp) {
-        node.className = node.className.replace(classNameRegExp, '');
-      };
-
-      var forceImageLoad = function(img) {
-        var imageSrc = img.src;
-        img.src = '';
-        img.src = imageSrc;
-      };
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var hidden = /\bhidden\b/;
-        var chart = document.getElementById('chart');
-        var body = document.body;
-
-        chart.addEventListener('load', function() { removeClass(body, hidden); });
-        chart.addEventListener('error', function() { removeClass(body, hidden); chart.remove(); });
-        forceImageLoad(chart);
-      });
-    }());
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
