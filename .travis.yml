@@ -1,8 +1,5 @@
 language: node_js
 node_js: node
 
-install:
-  - npm install --global htmllint-cli
-
 script:
-  - htmllint index.html
+  - npm run htmllint

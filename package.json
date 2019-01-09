@@ -1,0 +1,11 @@
+{
+  "name": "c-w.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "htmllint": "htmllint index.html"
+  },
+  "devDependencies": {
+    "htmllint-cli": "0.0.7"
+  }
+}
