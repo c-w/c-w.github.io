@@ -9,5 +9,6 @@ set -o errexit
   mv build.html index.html
 
   .travis/fetch-github-chart.sh
+  .travis/fetch-previews.js
   .travis/commit-and-push.sh
 )

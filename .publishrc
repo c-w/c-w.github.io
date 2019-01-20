@@ -3,6 +3,7 @@
     "CNAME",
     "index.html",
     "github.svg",
+    "previews.json",
     "favicon.ico"
   ],
   "branch": "master"

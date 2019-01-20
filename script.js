@@ -11,6 +11,24 @@
     img.src = imageSrc;
   };
 
+  var getJson = function(url, callback) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (request.readyState == 4 && request.status == 200) {
+        callback(JSON.parse(request.responseText));
+      }
+    }
+    request.open('GET', url, true);
+    request.send(null);
+  };
+
+  var loadScript = function(url, callback) {
+    var script = document.createElement('script');
+    script.addEventListener('load', callback);
+    script.src = url;
+    document.body.appendChild(script);
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
     var hidden = /\bhidden\b/;
     var chart = document.getElementById('chart');
@@ -19,5 +37,33 @@
     chart.addEventListener('load', function() { removeClass(body, hidden); });
     chart.addEventListener('error', function() { removeClass(body, hidden); chart.remove(); });
     forceImageLoad(chart);
+
+    loadScript('//unpkg.com/tippy.js@3/dist/tippy.all.min.js', function() {
+      var tippy = window.tippy;
+      if (!tippy) {
+        return;
+      }
+
+      getJson('./previews.json', function(previews) {
+        var previewNodes = document.getElementsByClassName('preview');
+        for (var i = 0; i < previewNodes.length; i++) {
+          var previewNode = previewNodes[i];
+          var preview = previews[previewNode.getAttribute('href')];
+          if (!preview) {
+            return;
+          }
+
+          tippy(previewNode.closest('li'), {
+            arrow: true,
+            delay: [20, 40],
+            content:
+              '<div class="preview">' +
+              ' <img src="' + preview.image + '" />' +
+              ' <div class="description">' + (preview.description || preview.title) + '</div>' +
+              '</div>'
+          });
+        }
+      });
+    });
   });
 }());
