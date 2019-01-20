@@ -29,6 +29,10 @@
     document.body.appendChild(script);
   };
 
+  var isMobileDevice = function() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
     var hidden = /\bhidden\b/;
     var chart = document.getElementById('chart');
@@ -38,32 +42,34 @@
     chart.addEventListener('error', function() { removeClass(body, hidden); chart.remove(); });
     forceImageLoad(chart);
 
-    loadScript('//unpkg.com/tippy.js@3/dist/tippy.all.min.js', function() {
-      var tippy = window.tippy;
-      if (!tippy) {
-        return;
-      }
-
-      getJson('./previews.json', function(previews) {
-        var previewNodes = document.getElementsByClassName('preview');
-        for (var i = 0; i < previewNodes.length; i++) {
-          var previewNode = previewNodes[i];
-          var preview = previews[previewNode.getAttribute('href')];
-          if (!preview) {
-            return;
-          }
-
-          tippy(previewNode.closest('li'), {
-            arrow: true,
-            delay: [20, 40],
-            content:
-              '<div class="preview">' +
-              ' <img src="' + preview.image + '" />' +
-              ' <div class="description">' + (preview.description || preview.title) + '</div>' +
-              '</div>'
-          });
+    if (!isMobileDevice()) {
+      loadScript('//unpkg.com/tippy.js@3/dist/tippy.all.min.js', function() {
+        var tippy = window.tippy;
+        if (!tippy) {
+          return;
         }
+
+        getJson('./previews.json', function(previews) {
+          var previewNodes = document.getElementsByClassName('preview');
+          for (var i = 0; i < previewNodes.length; i++) {
+            var previewNode = previewNodes[i];
+            var preview = previews[previewNode.getAttribute('href')];
+            if (!preview) {
+              return;
+            }
+
+            tippy(previewNode.closest('li'), {
+              arrow: true,
+              delay: [20, 40],
+              content:
+                '<div class="preview">' +
+                ' <img src="' + preview.image + '" />' +
+                ' <div class="description">' + (preview.description || preview.title) + '</div>' +
+                '</div>'
+            });
+          }
+        });
       });
-    });
+    }
   });
 }());
