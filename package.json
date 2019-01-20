@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "reload --browser",
-    "prestart": "node .travis/fetch-previews.js --if-missing",
+    "prestart": "npm-run-all build.previews build.chart",
+    "build.previews": "node .travis/fetch-previews.js --if-missing",
+    "build.chart": "node .travis/fetch-github-chart.js --if-missing",
     "build.concat": "html-inline -i index.html -o build.concat.html --ignore-images --ignore-links",
     "build.minify": "html-minifier build.concat.html -o build.html --collapse-whitespace --minify-css true --minify-js true",
     "build": "npm-run-all build.concat build.minify",

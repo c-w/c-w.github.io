@@ -8,7 +8,7 @@ set -o errexit
   npm run build
   mv build.html index.html
 
-  .travis/fetch-github-chart.sh
+  .travis/fetch-github-chart.js
   .travis/fetch-previews.js
   .travis/commit-and-push.sh
 )
