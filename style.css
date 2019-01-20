@@ -47,6 +47,31 @@ li:last-child {
   opacity: 0;
 }
 
+p,
+.paragraph {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.enumeration {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.enumeration li {
+  display: inline;
+}
+
+.enumeration li::after {
+  content: ',';
+}
+
+.enumeration li:last-child::after {
+  content: '.';
+}
+
 @media (max-width: 700px) {
   #chart {
     display: none;
