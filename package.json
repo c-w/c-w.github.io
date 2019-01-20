@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "static -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
+    "start": "reload --browser",
     "build.concat": "html-inline -i index.html -o build.concat.html --ignore-images --ignore-links",
     "build.minify": "html-minifier build.concat.html -o build.html --collapse-whitespace --minify-css true --minify-js true",
     "build": "npm-run-all build.concat build.minify",
@@ -20,8 +20,8 @@
     "html-minifier": "^3.5.21",
     "html-validator-cli": "^4.1.4",
     "htmllint-cli": "0.0.7",
-    "node-static": "^0.7.11",
     "npm-run-all": "^4.1.5",
+    "reload": "^2.4.0",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0"
   }
