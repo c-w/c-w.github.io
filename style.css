@@ -64,8 +64,12 @@ p,
   display: inline;
 }
 
+.enumeration li:first-child::before {
+  content: ' ';
+}
+
 .enumeration li::after {
-  content: ',';
+  content: ', ';
 }
 
 .enumeration li:last-child::after {
