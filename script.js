@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var removeClass = function(node, classNameRegExp) {
     node.className = node.className.replace(classNameRegExp, '');
   };
