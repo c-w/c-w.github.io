@@ -33,6 +33,10 @@
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   };
 
+  var hasSpaceOnRight = function(anchor, width) {
+    return (window.innerWidth - anchor.offsetWidth) / 2 > width;
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     var hidden = /\bhidden\b/;
     var chart = document.getElementById('chart');
@@ -58,8 +62,13 @@
               return;
             }
 
-            tippy(previewNode.closest('li'), {
+            var tooltipAnchor = previewNode.closest('li');
+            var tooltipWidth = 300;
+
+            tippy(tooltipAnchor, {
               arrow: true,
+              maxWidth: tooltipWidth,
+              placement: hasSpaceOnRight(tooltipAnchor, tooltipWidth) ? 'right' : 'top',
               delay: [20, 40],
               content:
                 '<div class="preview">' +
