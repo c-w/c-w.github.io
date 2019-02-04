@@ -65,7 +65,7 @@
             var tooltipAnchor = previewNode.closest('li');
             var tooltipWidth = 300;
 
-            tippy(tooltipAnchor, {
+            tippy.one(tooltipAnchor, {
               arrow: true,
               maxWidth: tooltipWidth,
               placement: hasSpaceOnRight(tooltipAnchor, tooltipWidth) ? 'right' : 'top',
