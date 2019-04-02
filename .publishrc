@@ -2,6 +2,8 @@
   "files": [
     "CNAME",
     "index.html",
+    "conway.js",
+    "conway.css",
     "github.svg",
     "previews.json",
     "favicon.ico"

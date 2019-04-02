@@ -1,0 +1,7 @@
+[data-conway-state=alive] {
+  fill: #d6e685 !important;
+}
+
+[data-conway-state=dead] {
+  fill: #eee !important;
+}

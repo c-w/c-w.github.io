@@ -42,7 +42,14 @@
     var chart = document.getElementById('chart');
     var body = document.body;
 
-    chart.addEventListener('load', function() { removeClass(body, hidden); });
+    chart.addEventListener('load', function() {
+      removeClass(body, hidden);
+      if (!window.conway) {
+        loadScript('./conway.js', function() {
+          window.conway.init(chart.contentDocument);
+        });
+      }
+    });
     chart.addEventListener('error', function() { removeClass(body, hidden); chart.remove(); });
     forceImageLoad(chart);
 
