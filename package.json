@@ -20,7 +20,7 @@
     "build": "npm-run-all prestart build.js.compile build.js.minify build.css build.html.concat build.html.minify build.copy",
     "lint.html": "htmllint src/index.html",
     "lint.xhtml": "html-validator --format=xhtml --quiet --file=src/index.html",
-    "lint.js": "eslint src/*.js",
+    "lint.js": "eslint src/ .travis/",
     "lint.css": "stylelint src/*.css",
     "lint": "npm-run-all lint.html lint.xhtml lint.js lint.css"
   },
@@ -28,6 +28,7 @@
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "bluebird": "^3.5.3",
     "cheerio": "^1.0.0-rc.2",
     "copyfiles": "^2.1.0",
     "csso-cli": "^2.0.2",

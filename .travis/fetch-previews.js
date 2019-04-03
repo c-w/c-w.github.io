@@ -1,5 +1,7 @@
 #!/usr/bin/env node
+/* eslint no-console: "off" */
 
+const Promise = require('bluebird');
 const cheerio = require('cheerio');
 const fs = require('fs-extra');
 const path = require('path');

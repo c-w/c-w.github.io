@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint no-console: "off" */
 
 const fs = require('fs-extra');
 const path = require('path');

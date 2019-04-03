@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint no-console: "off" */
 
 const ghpages = require('gh-pages');
 const process = require('process');
