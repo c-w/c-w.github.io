@@ -3,7 +3,7 @@
     "CNAME",
     "build/index.html",
     "conway.js",
-    "conway.css",
+    "build/conway.css",
     "github.svg",
     "previews.json",
     "favicon.ico"

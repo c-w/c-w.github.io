@@ -9,7 +9,9 @@
     "build.previews": "node .travis/fetch-previews.js --if-missing",
     "build.chart": "node .travis/fetch-github-chart.js --if-missing",
     "build.concat": "html-inline -i index.html -o build/index.concat.html --ignore-images --ignore-links",
-    "build.minify": "html-minifier build/index.concat.html -o build/index.html --collapse-whitespace --minify-css true --minify-js true",
+    "build.minify.html": "html-minifier build/index.concat.html -o build/index.html --collapse-whitespace --minify-css true --minify-js true",
+    "build.minify.css": "csso -i conway.css -o build/conway.css",
+    "build.minify": "npm-run-all build.minify.css build.minify.css",
     "build": "npm-run-all build.concat build.minify",
     "lint.html": "htmllint index.html",
     "lint.xhtml": "html-validator --format=xhtml --quiet --file=index.html",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "csso-cli": "^2.0.2",
     "eslint": "^5.12.0",
     "eslint-plugin-html": "^5.0.0",
     "fs-extra": "^7.0.1",
