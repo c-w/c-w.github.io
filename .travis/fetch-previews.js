@@ -23,13 +23,13 @@ const fetchPreviewInfo = (uri) => {
     });
 };
 
-const previewsPath = path.join(__dirname, '..', 'previews.json');
+const previewsPath = path.join(__dirname, '..', 'src', 'previews.json');
 
 if (process.argv.length >= 3 && process.argv[2] === '--if-missing' && fs.existsSync(previewsPath)) {
   process.exit(0);
 }
 
-const indexPath = path.join(__dirname, '..', 'index.html');
+const indexPath = path.join(__dirname, '..', 'src', 'index.html');
 const htmlContent = fs.readFileSync(indexPath, 'utf-8');
 const $ = cheerio.load(htmlContent);
 

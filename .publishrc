@@ -4,9 +4,9 @@
     "build/index.html",
     "build/conway.js",
     "build/conway.css",
-    "github.svg",
-    "previews.json",
-    "favicon.ico"
+    "src/github.svg",
+    "src/previews.json",
+    "src/favicon.ico"
   ],
   "branch": "master"
 }

@@ -5,7 +5,7 @@ const path = require('path');
 const process = require('process');
 const request = require('request-promise');
 
-const chartPath = path.join(__dirname, '..', 'github.svg');
+const chartPath = path.join(__dirname, '..', 'src', 'github.svg');
 
 if (process.argv.length >= 3 && process.argv[2] === '--if-missing' && fs.existsSync(chartPath)) {
   process.exit(0);
