@@ -15,4 +15,4 @@ jobs:
     - stage: lint
       script: npm run lint
     - stage: deploy
-      script: .travis/cd.sh
+      script: npm run deploy
