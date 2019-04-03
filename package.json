@@ -21,7 +21,7 @@
     "lint.html": "htmllint src/index.html",
     "lint.xhtml": "html-validator --format=xhtml --quiet --file=src/index.html",
     "lint.js": "eslint src/ .travis/",
-    "lint.css": "stylelint src/*.css",
+    "lint.css": "stylelint 'src/*.css'",
     "lint": "npm-run-all lint.html lint.xhtml lint.js lint.css"
   },
   "devDependencies": {
