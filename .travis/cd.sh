@@ -6,7 +6,6 @@ set -o errexit
   cd "$(dirname "$0")/.."
 
   npm run build
-  mv build.html index.html
 
   .travis/fetch-github-chart.js
   .travis/fetch-previews.js

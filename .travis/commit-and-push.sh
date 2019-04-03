@@ -11,7 +11,7 @@ git config --global user.email "travis@travis-ci.org"
 git checkout --orphan gh-pages
 git ls-files -z | xargs -0 git rm --cached --force
 
-jq -r '.files | .[]' < .publishrc | xargs git add --force
+jq -r '.files | .[]' < .publishrc | while read file; do cp "${file}" . && git add --force "$(basename "${file}")"; done
 git commit --message "$(printf "Travis build ${TRAVIS_BUILD_NUMBER}\n\n${TRAVIS_BUILD_WEB_URL}")"
 
 user="$(git remote get-url origin | cut -d'/' -f4)"

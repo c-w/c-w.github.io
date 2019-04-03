@@ -1,7 +1,7 @@
 {
   "files": [
     "CNAME",
-    "index.html",
+    "build/index.html",
     "conway.js",
     "conway.css",
     "github.svg",
