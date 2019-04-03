@@ -1,13 +1,10 @@
 window.conway = (function() {
-  'use strict';
+  const WrappingArray = function(entries) {
+    let xMax = -1;
+    let yMax = -1;
 
-  var WrappingArray = function(entries) {
-    var xMax = -1;
-    var yMax = -1;
-    var i, entry;
-
-    for (i = 0; i < entries.length; i++) {
-      entry = entries[i];
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i];
       if (entry.x > xMax) xMax = entry.x;
       if (entry.y > yMax) yMax = entry.y;
     }
@@ -15,18 +12,18 @@ window.conway = (function() {
     xMax++;
     yMax++;
 
-    var array = new Array(xMax);
-    for (i = 0; i < xMax; i++) {
+    const array = new Array(xMax);
+    for (let i = 0; i < xMax; i++) {
       array[i] = new Array(yMax);
     }
 
-    for (i = 0; i < entries.length; i++) {
-      entry = entries[i];
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i];
       array[entry.x][entry.y] = entry.value;
     }
 
     return {
-      get: function(x, y) {
+      get: (x, y) => {
         if (x < 0) {
           x = xMax - x;
         }
@@ -37,10 +34,10 @@ window.conway = (function() {
 
         return array[x % xMax][y % yMax];
       },
-      forEach: function(callback) {
-        for (var i = 0; i < xMax; i++) {
-          for (var j = 0; j < yMax; j++) {
-            entry = array[i][j];
+      forEach: (callback) => {
+        for (let i = 0; i < xMax; i++) {
+          for (let j = 0; j < yMax; j++) {
+            const entry = array[i][j];
             if (entry != null) {
               callback(entry, i, j);
             }
@@ -50,10 +47,10 @@ window.conway = (function() {
     };
   };
 
-  var Conway = function(board) {
-    var nextStep = function() {
-      board.forEach(function(value, x, y) {
-        var neighbors = [
+  const Conway = (board) => {
+    const nextStep = () => {
+      board.forEach((value, x, y) => {
+        const neighbors = [
           board.get(x - 1, y - 1),
           board.get(x    , y - 1),
           board.get(x + 1, y - 1),
@@ -64,15 +61,15 @@ window.conway = (function() {
           board.get(x + 1, y + 1),
         ];
 
-        var numLiveNeighbors = 0;
-        for (var i = 0; i < neighbors.length; i++) {
-          var neighbor = neighbors[i];
+        let numLiveNeighbors = 0;
+        for (let i = 0; i < neighbors.length; i++) {
+          const neighbor = neighbors[i];
           if (neighbor != null && neighbor.state === 'alive') {
             numLiveNeighbors++;
           }
         }
 
-        var isAlive = value.state === 'alive';
+        let isAlive = value.state === 'alive';
 
         if (isAlive) {
           isAlive = numLiveNeighbors === 2 || numLiveNeighbors === 3;
@@ -83,9 +80,9 @@ window.conway = (function() {
         value.nextState = isAlive ? 'alive' : 'dead';
       });
 
-      var converged = true;
-      board.forEach(function(value) {
-        var previousState = value.state;
+      let converged = true;
+      board.forEach((value) => {
+        const previousState = value.state;
         value.state = value.nextState;
         value.nextState = null;
 
@@ -98,73 +95,68 @@ window.conway = (function() {
     };
 
     return {
-      run: function(epoch) {
+      run: (epoch) => {
         while (epoch--) {
-          var converged = nextStep();
+          const converged = nextStep();
           if (converged) {
             return true;
           }
         }
         return false;
       },
-      show: function() {
-        board.forEach(function(value) {
-          value.element.setAttribute('data-conway-state', value.state);
-        });
+      show: () => {
+        board.forEach((value) => value.element.setAttribute('data-conway-state', value.state));
       },
-      reset: function() {
-        board.forEach(function(value) {
-          value.element.setAttribute('data-conway-state', '');
-        });
+      reset: () => {
+        board.forEach((value) => value.element.setAttribute('data-conway-state', ''));
       },
     };
   };
 
-  var buildConway = function(rootElement) {
-    var rects = rootElement.getElementsByTagName('rect');
+  const buildConway = (rootElement) => {
+    const rects = rootElement.getElementsByTagName('rect');
 
-    var cells = [];
-    for (var i = 0; i < rects.length; i++) {
-      var rect = rects[i];
-      var x = (rect.getAttribute('x') - 14) / 13;
-      var y = (rect.getAttribute('y') - 14) / 13;
-      var isAlive = rect.getAttribute('data-score') !== '0';
+    const cells = [];
+    for (let i = 0; i < rects.length; i++) {
+      const rect = rects[i];
+      const x = (rect.getAttribute('x') - 14) / 13;
+      const y = (rect.getAttribute('y') - 14) / 13;
+      const isAlive = rect.getAttribute('data-score') !== '0';
       cells.push({ x: x, y: y, value: { element: rect, state: isAlive ? 'alive' : 'dead' } });
     }
 
     return Conway(WrappingArray(cells));
   };
 
-  var injectStyle = function(rootElement) {
-    var link = rootElement.createElementNS('http://www.w3.org/1999/xhtml', 'link');
+  const injectStyle = (rootElement) => {
+    const link = rootElement.createElementNS('http://www.w3.org/1999/xhtml', 'link');
     link.setAttribute('href', './conway.css');
     link.setAttribute('type', 'text/css');
     link.setAttribute('rel', 'stylesheet');
-    var svg = rootElement.getElementsByTagName('svg')[0];
+    const svg = rootElement.getElementsByTagName('svg')[0];
     svg.insertBefore(link, svg.firstChild);
   };
 
   return {
-    init: function(rootElement) {
+    init: (rootElement) => {
       injectStyle(rootElement);
 
-      var epoch = 0;
-      var conway;
-      document.addEventListener('keydown', function(event) {
+      let epoch = 0;
+      document.addEventListener('keydown', (event) => {
         if (event.key === 'n') {
-          conway = buildConway(rootElement);
-          var converged = conway.run(epoch + 1);
+          const conway = buildConway(rootElement);
+          const converged = conway.run(epoch + 1);
           if (!converged) {
             epoch++;
           }
           conway.show();
         } else if (event.key === 'b' && epoch > 0) {
-          conway = buildConway(rootElement);
+          const conway = buildConway(rootElement);
           epoch--;
           conway.run(epoch);
           conway.show();
         } else if (event.key === 'r') {
-          conway = buildConway(rootElement);
+          const conway = buildConway(rootElement);
           epoch = 0;
           conway.reset();
         }

@@ -8,11 +8,12 @@
     "prebuild": "mkdirp build",
     "build.previews": "node .travis/fetch-previews.js --if-missing",
     "build.chart": "node .travis/fetch-github-chart.js --if-missing",
-    "build.concat": "html-inline -i index.html -o build/index.concat.html --ignore-images --ignore-links",
-    "build.minify.html": "html-minifier build/index.concat.html -o build/index.html --collapse-whitespace --minify-css true --minify-js true",
-    "build.minify.css": "csso -i conway.css -o build/conway.css",
-    "build.minify": "npm-run-all build.minify.css build.minify.css",
-    "build": "npm-run-all build.concat build.minify",
+    "build.js.compile": "foreach --glob '*.js' --execute 'babel {{path}} --out-file build/{{name}}.es5'",
+    "build.js.minify": "foreach --glob 'build/*.es5' --execute 'uglifyjs {{path}} --compress --mangle --output build/{{name}}.js'",
+    "build.css": "foreach --glob '*.css' --execute 'csso --input {{path}} --output build/{{name}}.css'",
+    "build.html.concat": "html-inline -i index.html -o build/index.concat.html -b build/ --ignore-images --ignore-links",
+    "build.html.minify": "html-minifier build/index.concat.html --output build/index.html --collapse-whitespace",
+    "build": "npm-run-all build.js.compile build.js.minify build.css build.html.concat build.html.minify",
     "lint.html": "htmllint index.html",
     "lint.xhtml": "html-validator --format=xhtml --quiet --file=index.html",
     "lint.js": "eslint *.js",
@@ -20,10 +21,14 @@
     "lint": "npm-run-all lint.html lint.xhtml lint.js lint.css"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "cheerio": "^1.0.0-rc.2",
     "csso-cli": "^2.0.2",
     "eslint": "^5.12.0",
     "eslint-plugin-html": "^5.0.0",
+    "foreach-cli": "^1.8.1",
     "fs-extra": "^7.0.1",
     "html-inline": "^1.2.0",
     "html-minifier": "^3.5.21",
@@ -35,6 +40,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "stylelint": "^9.9.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "uglifyjs": "^2.4.11"
   }
 }
