@@ -8,7 +8,7 @@
     "prebuild": "mkdirp build",
     "deploy": "node scripts/deploy.js",
     "predeploy": "npm-run-all build clean",
-    "clean": "rimraf build/*.es5 build/index.concat.html build/noscript.css build/script.js build/style.css",
+    "clean": "rimraf --glob 'build/*.es5' build/index.concat.html build/noscript.css build/script.js build/style.css",
     "build.copy": "copyfiles --flat CNAME src/github.svg src/previews.json src/favicon.ico build/",
     "build.previews": "node scripts/fetch-previews.js --if-missing",
     "build.chart": "node scripts/fetch-github-chart.js --if-missing",
