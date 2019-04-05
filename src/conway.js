@@ -1,87 +1,82 @@
 window.conway = (function() {
-  const WrappingArray = function(entries) {
-    let xMax = -1;
-    let yMax = -1;
+  class WrappingArray {
+    constructor(entries) {
+      const xMax = Math.max(...entries.map(entry => entry.x)) + 1;
+      const yMax = Math.max(...entries.map(entry => entry.y)) + 1;
 
-    for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i];
-      if (entry.x > xMax) xMax = entry.x;
-      if (entry.y > yMax) yMax = entry.y;
+      const array = new Array(xMax);
+      for (let i = 0; i < xMax; i++) {
+        array[i] = new Array(yMax);
+      }
+
+      for (const entry of entries) {
+        array[entry.x][entry.y] = entry.value;
+      }
+
+      this._xMax = xMax;
+      this._yMax = yMax;
+      this._array = array;
     }
 
-    xMax++;
-    yMax++;
+    get(x, y) {
+      if (x < 0) {
+        x = this._xMax - x;
+      }
 
-    const array = new Array(xMax);
-    for (let i = 0; i < xMax; i++) {
-      array[i] = new Array(yMax);
+      if (y < 0) {
+        y = this._yMax - y;
+      }
+
+      return this._array[x % this._xMax][y % this._yMax];
     }
 
-    for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i];
-      array[entry.x][entry.y] = entry.value;
-    }
-
-    return {
-      get: (x, y) => {
-        if (x < 0) {
-          x = xMax - x;
-        }
-
-        if (y < 0) {
-          y = yMax - y;
-        }
-
-        return array[x % xMax][y % yMax];
-      },
-      forEach: (callback) => {
-        for (let i = 0; i < xMax; i++) {
-          for (let j = 0; j < yMax; j++) {
-            const entry = array[i][j];
-            if (entry != null) {
-              callback(entry, i, j);
-            }
+    forEach(callback) {
+      for (let x = 0; x < this._xMax; x++) {
+        for (let y = 0; y < this._yMax; y++) {
+          const value = this._array[x][y];
+          if (value != null) {
+            callback({ value, x, y });
           }
         }
-      },
-    };
-  };
+      }
+    }
+  }
 
-  const Conway = (board) => {
-    const nextStep = () => {
-      board.forEach((value, x, y) => {
-        const neighbors = [
-          board.get(x - 1, y - 1),
-          board.get(x    , y - 1),
-          board.get(x + 1, y - 1),
-          board.get(x - 1, y    ),
-          board.get(x + 1, y    ),
-          board.get(x - 1, y + 1),
-          board.get(x    , y + 1),
-          board.get(x + 1, y + 1),
-        ];
+  class Conway {
+    constructor(board) {
+      this._board = board;
+    }
 
-        let numLiveNeighbors = 0;
-        for (let i = 0; i < neighbors.length; i++) {
-          const neighbor = neighbors[i];
-          if (neighbor != null && neighbor.state === 'alive') {
-            numLiveNeighbors++;
-          }
-        }
+    _getNeighbors(x, y) {
+      return [
+        this._board.get(x - 1, y - 1),
+        this._board.get(x    , y - 1),
+        this._board.get(x + 1, y - 1),
+        this._board.get(x - 1, y    ),
+        this._board.get(x + 1, y    ),
+        this._board.get(x - 1, y + 1),
+        this._board.get(x    , y + 1),
+        this._board.get(x + 1, y + 1),
+      ];
+    }
 
-        let isAlive = value.state === 'alive';
+    _getNextState(x, y) {
+      const numLiveNeighbors = this._getNeighbors(x, y)
+        .filter(neighbor => neighbor != null && neighbor.state === 'alive')
+        .length;
 
-        if (isAlive) {
-          isAlive = numLiveNeighbors === 2 || numLiveNeighbors === 3;
-        } else {
-          isAlive = numLiveNeighbors === 3;
-        }
+      const isAlive = this._board.get(x, y).state === 'alive'
+        ? numLiveNeighbors === 2 || numLiveNeighbors === 3
+        : numLiveNeighbors === 3;
 
-        value.nextState = isAlive ? 'alive' : 'dead';
-      });
+      return isAlive ? 'alive' : 'dead';
+    }
+
+    _nextStep() {
+      this._board.forEach(({ value, x, y }) => value.nextState = this._getNextState(x, y));
 
       let converged = true;
-      board.forEach((value) => {
+      this._board.forEach(({ value }) => {
         const previousState = value.state;
         value.state = value.nextState;
         value.nextState = null;
@@ -92,71 +87,75 @@ window.conway = (function() {
       });
 
       return converged;
-    };
-
-    return {
-      run: (epoch) => {
-        while (epoch--) {
-          const converged = nextStep();
-          if (converged) {
-            return true;
-          }
-        }
-        return false;
-      },
-      show: () => {
-        board.forEach((value) => value.element.setAttribute('data-conway-state', value.state));
-      },
-      reset: () => {
-        board.forEach((value) => value.element.setAttribute('data-conway-state', ''));
-      },
-    };
-  };
-
-  const buildConway = (rootElement) => {
-    const rects = rootElement.getElementsByTagName('rect');
-
-    const cells = [];
-    for (let i = 0; i < rects.length; i++) {
-      const rect = rects[i];
-      const x = (rect.getAttribute('x') - 14) / 13;
-      const y = (rect.getAttribute('y') - 14) / 13;
-      const isAlive = rect.getAttribute('data-score') !== '0';
-      cells.push({ x: x, y: y, value: { element: rect, state: isAlive ? 'alive' : 'dead' } });
     }
 
-    return Conway(WrappingArray(cells));
-  };
+    run(epoch) {
+      while (epoch--) {
+        const converged = this._nextStep();
+        if (converged) {
+          return true;
+        }
+      }
+      return false;
+    }
 
-  const injectStyle = (rootElement) => {
-    const link = rootElement.createElementNS('http://www.w3.org/1999/xhtml', 'link');
-    link.setAttribute('href', './conway.css');
-    link.setAttribute('type', 'text/css');
-    link.setAttribute('rel', 'stylesheet');
-    const svg = rootElement.getElementsByTagName('svg')[0];
-    svg.insertBefore(link, svg.firstChild);
-  };
+    show() {
+      this._board.forEach(({ value }) => value.element.setAttribute('data-conway-state', value.state));
+    }
+
+    reset() {
+      this._board.forEach(({ value }) => value.element.setAttribute('data-conway-state', ''));
+    }
+
+    static build(rootElement) {
+      const rects = rootElement.getElementsByTagName('rect');
+
+      const cells = [];
+      for (const rect of rects) {
+        const isAlive = rect.getAttribute('data-score') !== '0';
+        cells.push({
+          x: (rect.getAttribute('x') - 14) / 13,
+          y: (rect.getAttribute('y') - 14) / 13,
+          value: {
+            element: rect,
+            state: isAlive ? 'alive' : 'dead',
+          }
+        });
+      }
+
+      return new Conway(new WrappingArray(cells));
+    }
+
+    static injectStyle(rootElement) {
+      const link = rootElement.createElementNS('http://www.w3.org/1999/xhtml', 'link');
+      link.setAttribute('href', './conway.css');
+      link.setAttribute('type', 'text/css');
+      link.setAttribute('rel', 'stylesheet');
+      const svg = rootElement.getElementsByTagName('svg')[0];
+      svg.insertBefore(link, svg.firstChild);
+    }
+  }
 
   return {
     init: (rootElement) => {
-      injectStyle(rootElement);
+      Conway.injectStyle(rootElement);
 
       let epoch = 0;
       document.addEventListener('keydown', (event) => {
         if (event.key === 'n') {
-          const conway = buildConway(rootElement);
+          const conway = Conway.build(rootElement);
           const converged = conway.run(epoch + 1);
           if (!converged) {
             epoch++;
           }
           conway.show();
         } else if (event.key === 'b' && epoch > 0) {
-          const conway = buildConway(rootElement);
+          const conway = Conway.build(rootElement);
           epoch--;
           conway.run(epoch);
           conway.show();
         } else if (event.key === 'r') {
-          const conway = buildConway(rootElement);
+          const conway = Conway.build(rootElement);
           epoch = 0;
           conway.reset();
         }
