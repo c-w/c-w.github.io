@@ -6,12 +6,12 @@
     "start": "reload --browser --dir src",
     "prestart": "npm-run-all build.previews build.chart",
     "prebuild": "mkdirp build",
-    "deploy": "node scripts/deploy.js",
+    "deploy": "node scripts/deploy.js --directory build",
     "predeploy": "npm-run-all build clean",
     "clean": "rimraf --glob 'build/*.es5' build/index.concat.html build/noscript.css build/script.js build/style.css",
     "build.copy": "copyfiles --flat CNAME src/github.svg src/previews.json src/favicon.ico build/",
-    "build.previews": "node scripts/fetch-previews.js --if-missing",
-    "build.chart": "node scripts/fetch-github-chart.js --if-missing",
+    "build.previews": "node scripts/fetch-previews.js --input src/index.html --output src/previews.json",
+    "build.chart": "node scripts/fetch-github-chart.js --output src/github.svg",
     "build.js.compile": "foreach --glob 'src/*.js' --execute 'babel {{path}} --out-file build/{{name}}.es5'",
     "build.js.minify": "foreach --glob 'build/*.es5' --execute 'uglifyjs {{path}} --compress --mangle --output build/{{name}}.js'",
     "build.css": "foreach --glob 'src/*.css' --execute 'csso --input {{path}} --output build/{{name}}.css'",
@@ -49,6 +49,7 @@
     "rimraf": "^2.6.3",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0",
-    "uglifyjs": "^2.4.11"
+    "uglifyjs": "^2.4.11",
+    "yargs": "^13.2.2"
   }
 }

@@ -4,9 +4,36 @@
 const Promise = require('bluebird');
 const cheerio = require('cheerio');
 const fs = require('fs-extra');
-const path = require('path');
 const process = require('process');
 const request = require('request-promise');
+const yargs = require('yargs');
+
+const argv = yargs
+  .option('i', {
+    alias: 'input',
+    type: 'string',
+    describe: 'HTML file for which to fetch link previews',
+    coerce: arg => {
+      if (!fs.lstatSync(arg).isFile()) {
+        throw new Error(`${arg} is not a file`);
+      }
+      return arg;
+    },
+    demand: true,
+  })
+  .option('o', {
+    alias: 'output',
+    type: 'string',
+    describe: 'Location where to store link previews file',
+    coerce: arg => {
+      if (process.env.FORCE_ASSET_REFRESH !== 'true' && fs.existsSync(arg)) {
+        process.exit(0);
+      }
+      return arg;
+    },
+    demand: true,
+  })
+  .argv;
 
 const getOpenGraphValue = ($, og) => {
   const node = $(`meta[property="og:${og}"]`).get(0);
@@ -25,14 +52,7 @@ const fetchPreviewInfo = (uri) => {
     });
 };
 
-const previewsPath = path.join(__dirname, '..', 'src', 'previews.json');
-
-if (process.argv.length >= 3 && process.argv[2] === '--if-missing' && fs.existsSync(previewsPath)) {
-  process.exit(0);
-}
-
-const indexPath = path.join(__dirname, '..', 'src', 'index.html');
-const htmlContent = fs.readFileSync(indexPath, 'utf-8');
+const htmlContent = fs.readFileSync(argv.input, 'utf-8');
 const $ = cheerio.load(htmlContent);
 
 const previewLinks = $('a.preview').get().map(linkNode => linkNode.attribs.href);
@@ -43,7 +63,7 @@ Promise.all(previewLinks.map(fetchPreviewInfo))
     previewInfos.filter(info => info).forEach(({ uri, image, title, description }) => {
       previews[uri] = { image, title, description };
     });
-    return fs.writeFile(previewsPath, JSON.stringify(previews, null, 2), { encoding: 'utf-8' });
+    return fs.writeFile(argv.output, JSON.stringify(previews, null, 2), { encoding: 'utf-8' });
   })
   .catch(error => {
     console.error(error);
