@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 /* eslint no-console: "off" */
 
-const Promise = require('bluebird');
 const cheerio = require('cheerio');
 const fs = require('fs-extra');
 const process = require('process');
 const fetch = require('node-fetch');
 const yargs = require('yargs');
-
-fetch.Promise = Promise;
 
 const argv = yargs
   .option('i', {
