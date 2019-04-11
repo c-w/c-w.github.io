@@ -5,8 +5,10 @@ const Promise = require('bluebird');
 const cheerio = require('cheerio');
 const fs = require('fs-extra');
 const process = require('process');
-const request = require('request-promise');
+const fetch = require('node-fetch');
 const yargs = require('yargs');
+
+fetch.Promise = Promise;
 
 const argv = yargs
   .option('i', {
@@ -41,8 +43,10 @@ const getOpenGraphValue = ($, og) => {
 }
 
 const fetchPreviewInfo = (uri) => {
-  return request({ uri, transform: cheerio.load })
-    .then($ => {
+  return fetch(uri)
+    .then(response => response.text())
+    .then(html => {
+      const $ = cheerio.load(html);
       const title = getOpenGraphValue($, 'title');
       const image = getOpenGraphValue($, 'image');
       const description = getOpenGraphValue($, 'description');

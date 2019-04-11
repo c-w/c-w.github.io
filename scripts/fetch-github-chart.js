@@ -3,7 +3,7 @@
 
 const fs = require('fs-extra');
 const process = require('process');
-const request = require('request-promise');
+const fetch = require('node-fetch');
 const yargs = require('yargs');
 
 const argv = yargs
@@ -34,8 +34,11 @@ const argv = yargs
   })
   .argv;
 
-request({ uri: `https://ghchart.rshah.org/${argv.githubUser}`, encoding: null })
-  .then(buffer => fs.writeFile(argv.output, buffer))
+fetch(`https://ghchart.rshah.org/${argv.githubUser}`)
+  .then(response => {
+    const output = fs.createWriteStream(argv.output);
+    response.body.pipe(output);
+  })
   .catch(error => {
     console.error(error);
     process.exit(1);
