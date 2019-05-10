@@ -141,24 +141,63 @@ window.conway = (function() {
       Conway.injectStyle(rootElement);
 
       let epoch = 0;
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'n') {
-          const conway = Conway.build(rootElement);
-          const converged = conway.run(epoch + 1);
-          if (!converged) {
-            epoch++;
-          }
-          conway.show();
-        } else if (event.key === 'b' && epoch > 0) {
-          const conway = Conway.build(rootElement);
-          epoch--;
-          conway.run(epoch);
-          conway.show();
-        } else if (event.key === 'r') {
-          const conway = Conway.build(rootElement);
-          epoch = 0;
-          conway.reset();
+
+      const nextStep = () => {
+        const conway = Conway.build(rootElement);
+        const converged = conway.run(epoch + 1);
+        if (!converged) {
+          epoch++;
         }
+        conway.show();
+      };
+
+      const previousStep = () => {
+        if (epoch <= 0) {
+          return;
+        }
+
+        const conway = Conway.build(rootElement);
+        epoch--;
+        conway.run(epoch);
+        conway.show();
+      };
+
+      const reset = () => {
+        const conway = Conway.build(rootElement);
+        epoch = 0;
+        conway.reset();
+      };
+
+      document.addEventListener('keydown', (event) => {
+        event.preventDefault();
+
+        if (event.key === 'n') {
+          nextStep();
+        } else if (event.key === 'b') {
+          previousStep();
+        } else if (event.key === 'r') {
+          reset();
+        }
+
+        return false;
+      });
+
+      rootElement.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (event.which === 1) {
+          nextStep();
+        }
+
+        return false;
+      });
+
+      rootElement.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+
+        previousStep();
+
+        return false;
       });
     },
   };
