@@ -169,8 +169,6 @@ window.conway = (function() {
       };
 
       document.addEventListener('keydown', (event) => {
-        event.preventDefault();
-
         if (event.key === 'n') {
           nextStep();
         } else if (event.key === 'b') {
@@ -178,8 +176,6 @@ window.conway = (function() {
         } else if (event.key === 'r') {
           reset();
         }
-
-        return false;
       });
 
       rootElement.addEventListener('click', (event) => {
