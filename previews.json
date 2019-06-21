@@ -5,8 +5,8 @@
     "description": "This article walks through the development of a technique for running Spark jobs in parallel on Azure Databricks. The technique enabled us to reduce the processing times for JetBlue's reporting threefold while keeping the business logic implementation straight forward. The technique can be re-used for any notebooks-based Spark workload on Azure Databricks."
   },
   "https://medium.com/@clemens.wolff/using-the-ambassador-pattern-for-reliable-pipes-and-filters-text-processing-9ebbea8f82c4": {
-    "image": "https://cdn-images-1.medium.com/max/1200/1*W5cc6p_E1zKpFdXoTgcCOQ.png",
-    "title": "Using the ambassador pattern for reliable pipes-and-filters text processing",
+    "image": "https://miro.medium.com/max/1200/1*W5cc6p_E1zKpFdXoTgcCOQ.png",
+    "title": "Using the ambassador pattern for reliable pipes-and-filters text processing - Medium",
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
   "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
@@ -15,8 +15,8 @@
     "description": "In this article, we introduce a technique to rapidly pre-label training data for image segmentation models such that annotators no longer have to painstakingly hand-annotate every pixel of interest in an image. The approach is implemented in Python and OpenCV and extensible to any image segmentation task that aims to identify a subset of visually distinct pixels in an image."
   },
   "https://medium.com/@clemens.wolff/leveraging-microservices-for-relationship-based-text-exploration-9efd2a54f7ae": {
-    "image": "https://cdn-images-1.medium.com/max/1200/1*hPsN8asQcaCSElx3N7df2g.png",
-    "title": "Leveraging microservices for relationship-based text exploration",
+    "image": "https://miro.medium.com/max/1200/1*hPsN8asQcaCSElx3N7df2g.png",
+    "title": "Leveraging microservices for relationship-based text exploration - Medium",
     "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
   },
   "https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/": {
