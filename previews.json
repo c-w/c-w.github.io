@@ -6,7 +6,7 @@
   },
   "https://medium.com/@clemens.wolff/using-the-ambassador-pattern-for-reliable-pipes-and-filters-text-processing-9ebbea8f82c4": {
     "image": "https://miro.medium.com/max/1200/1*W5cc6p_E1zKpFdXoTgcCOQ.png",
-    "title": "Using the ambassador pattern for reliable pipes-and-filters text processing - Medium",
+    "title": "Using the ambassador pattern for reliable pipes-and-filters text processing",
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
   "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
@@ -16,7 +16,7 @@
   },
   "https://medium.com/@clemens.wolff/leveraging-microservices-for-relationship-based-text-exploration-9efd2a54f7ae": {
     "image": "https://miro.medium.com/max/1200/1*hPsN8asQcaCSElx3N7df2g.png",
-    "title": "Leveraging microservices for relationship-based text exploration - Medium",
+    "title": "Leveraging microservices for relationship-based text exploration",
     "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
   },
   "https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/": {
