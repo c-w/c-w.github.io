@@ -1,0 +1,88 @@
+-
+  let repos = {};
+
+  pullRequests.forEach(pr => {
+    if (pr.state !== 'OPEN' && pr.state !== 'MERGED') {
+      return;
+    }
+
+    const repoName = `${pr.repository.owner.login}/${pr.repository.name}`;
+    const prCreatedAt = new Date(pr.createdAt);
+
+    let repo;
+    if (repoName in repos) {
+      repo = repos[repoName];
+      repo.lastContributed = prCreatedAt > repo.lastContributed
+        ? prCreatedAt
+        : repo.lastContributed;
+    } else {
+      repo = repos[repoName] = Object.assign({
+        lastContributed: prCreatedAt,
+        prs: [],
+      }, pr.repository);
+    }
+
+    repo.prs.push(pr);
+  });
+
+  repos = Object.values(repos);
+  repos.sort((r1, r2) => r2.lastContributed - r1.lastContributed);
+
+doctype html
+html(lang='en')
+  head
+    title Clemens Wolff's open source contributions
+
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='shortcut icon', href='./favicon.ico', type='image/x-icon')
+    link(rel='icon', href='./favicon.ico', type='image/x-icon')
+
+    script(
+      src='https://code.jquery.com/jquery-3.1.1.min.js'
+      integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8='
+      crossorigin='anonymous')
+    script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js'
+      integrity='sha256-ZPvH+DBiXs1v8yk7lmZa6+wqm+kzbwL9R1COtZ9+wjo='
+      crossorigin='anonymous')
+    link(
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'
+      integrity='sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY='
+      crossorigin='anonymous')
+    script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'
+      integrity='sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s='
+      crossorigin='anonymous')
+
+    style
+      include /style.css
+    style
+      include /oss.css
+
+  body
+    main#content
+      each repo in repos
+        - var id = `${repo.owner.login}-${repo.name}`.replace(/[^a-zA-Z0-9-]/g, '');
+        div.card
+          div.card-header(data-toggle='collapse', data-target=`#${id}`)
+            div.row
+              div.col.col-8
+                a(href=repo.url)
+                  img.thumb.lazy(data-src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
+                  | #{repo.owner.login}/#{repo.name}
+              div.col
+                span.badge.icon.pull-request #{repo.prs.length}
+              div.col
+                span.badge.icon.clock #{repo.lastContributed.toDateString()}
+          div.collapse(data-parent='#content', id=id)
+            ul.list-group
+              each pr in repo.prs
+                li.list-group-item
+                  a(href=pr.url) #{pr.title}
+
+    script
+      include /oss.js

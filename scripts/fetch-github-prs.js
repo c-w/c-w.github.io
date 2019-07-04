@@ -73,6 +73,7 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
                 cursor
               }
               nodes {
+                createdAt
                 title
                 state
                 url
@@ -83,9 +84,6 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
                   }
                   name
                   url
-                  stargazers {
-                    totalCount
-                  }
                 }
               }
             }

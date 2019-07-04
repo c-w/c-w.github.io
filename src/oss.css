@@ -1,0 +1,30 @@
+#content {
+  max-width: 50em;
+}
+
+.thumb {
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.card-header {
+  cursor: pointer;
+}
+
+.icon::before {
+  background-repeat: no-repeat;
+  background-size: auto 15px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+}
+
+.icon.pull-request::before {
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/git-pull-request.svg);
+}
+
+.icon.clock::before {
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clock.svg);
+}
