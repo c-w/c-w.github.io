@@ -75,15 +75,15 @@ html(lang='en')
         div.card
           div.card-header(data-toggle='collapse', data-target=`#${id}`)
             div.row
-              div.col.col-8
+              div.col.col-12.col-md-8
                 a(href=repo.url)
                   img.thumb.lazy(src=pixel, data-src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
                   noscript
                     img.thumb(src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
                   | #{repo.owner.login}/#{repo.name}
-              div.col
+              div.col.col-12.col-md-1
                 span.badge.icon.pull-request #{repo.prs.length}
-              div.col
+              div.col.col-12.col-md-3
                 span.badge.icon.clock #{repo.lastContributed.toDateString()}
           div.collapse(data-parent='#content', id=id)
             ul.list-group
