@@ -63,7 +63,12 @@ html(lang='en')
     style
       include /oss.css
 
+    noscript
+      style
+        include /oss.noscript.css
+
   body
+    - var pixel = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
     main#content
       each repo in repos
         - var id = `${repo.owner.login}-${repo.name}`.replace(/[^a-zA-Z0-9-]/g, '');
@@ -72,7 +77,9 @@ html(lang='en')
             div.row
               div.col.col-8
                 a(href=repo.url)
-                  img.thumb.lazy(data-src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
+                  img.thumb.lazy(src=pixel, data-src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
+                  noscript
+                    img.thumb(src=repo.owner.avatarUrl, alt=`Avatar for ${repo.owner.login}`)
                   | #{repo.owner.login}/#{repo.name}
               div.col
                 span.badge.icon.pull-request #{repo.prs.length}

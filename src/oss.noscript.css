@@ -1,0 +1,7 @@
+.collapse {
+  display: block !important;
+}
+
+img.lazy {
+  display: none !important;
+}
