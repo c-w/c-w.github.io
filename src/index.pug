@@ -1,0 +1,113 @@
+doctype html
+html(lang='en')
+  head
+    title Clemens Wolff's profile
+
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='shortcut icon', href='./favicon.ico', type='image/x-icon')
+    link(rel='icon', href='./favicon.ico', type='image/x-icon')
+
+    style
+      include /style.css
+
+    noscript
+      include /noscript.css
+
+  body.hidden
+    object#chart(aria-hidden='true', tabindex='-1', type='image/svg+xml', data='./github.svg')
+      | Clemens Wolff's Github chart
+
+    #content
+      section#about-me
+        h1 Hi, I'm Clemens
+        p
+          | I'm a senior software engineer at Microsoft in New York City (ex-Amazon).
+          | I work on diverse #[em cutting-edge projects] with partners and develop #[em open source solutions].
+          | I'm also the lead engineer of #[a(href='//ascoderu.ca') Ascoderu], a tech-for-good non-profit.
+
+      section#software-development
+        h2 Software development
+        p
+          | I've worked on all levels of the stack, including frontend, backend, devops and machine learning.
+          | I've led teams, designed system architectures, mentored junior engineers and shipped a whole lot of code.
+        div.paragraph
+          | Here are some keywords of technologies I've used, in no particular order:
+          ul.enumeration
+            li React
+            li TypeScript
+            li Node
+            li Python
+            li Java
+            li Scala
+            li C#
+            li Bash
+            li Docker
+            li Kubernetes
+            li Azure
+            li Scikit-Learn
+            li Spark
+        p
+          | You can find out more about my professional background on #[a(href='//www.linkedin.com/in/clemens-wolff/') LinkedIn].
+          | You can view some of my #[a(href='//github.com/c-w?tab=repositories') projects] and
+          | #[a(href='//github.com/c-w?tab=stars') open source contributions] on Github.
+
+      section#technical-writing
+        h2 Technical writing &amp; public speaking
+        div.paragraph
+          | I've published several articles, including:
+          ul
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2019/01/18/running-parallel-apache-spark-notebook-workloads-on-azure-databricks/')
+                | Running Parallel Apache Spark Notebook Workloads On Azure Databricks
+            li
+              a.preview(href='https://medium.com/@clemens.wolff/using-the-ambassador-pattern-for-reliable-pipes-and-filters-text-processing-9ebbea8f82c4')
+                | Using the ambassador pattern for reliable pipes-and-filters text processing
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/')
+                | Using Otsu’s method to generate data for training of deep learning image segmentation models
+            li
+              a.preview(href='https://medium.com/@clemens.wolff/leveraging-microservices-for-relationship-based-text-exploration-9efd2a54f7ae')
+                | Leveraging microservices for relationship-based text exploration
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/')
+                | Continuous Delivery for Service Fabric via Github, Travis CI and Docker Compose
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2018/01/09/deploying-a-linux-python-web-application-to-service-fabric-via-docker-compose/')
+                | Deploying a Linux Python web application to Service Fabric via Docker Compose
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2017/12/05/comparing-transfer-learning-systems-custom-vision-service-vs-inception-vs-mobilenet/')
+                | Comparing Image-Classification Systems: Custom Vision Service vs. Inception
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2017/11/20/opener-permissively-licensed-named-entity-recognition-on-the-jvm/')
+                | Permissively-Licensed Named Entity Recognition on the JVM
+            li
+              a.preview(href='https://www.microsoft.com/developerblog/2017/11/01/building-a-custom-spark-connector-for-near-real-time-speech-to-text-transcription/')
+                | Building a Custom Spark Connector for Near Real-Time Speech-to-Text Transcription
+            li
+              a(href='https://aclweb.org/anthology/N15-1174')
+                | Learning to Interpret and Describe Abstract Scenes
+          | I've also spoken on a number of technical topics, including:
+          ul
+            li
+              a.preview(href='https://www.podcastinit.com/lokole-with-clemens-wolff-episode-167/')
+                | How Ascoderu bridges the digital divide with open technologies at Podcast.__init__
+            li
+              a.preview(href='https://www.youtube.com/watch?v=-ej6lf9RfBQ#t=20m40s')
+                | Comparing setup cost and performance of Python web frameworks at Code &amp; Coffee Vancouver
+
+      section#miscellanea
+        h2 Miscellanea
+        p
+          | I read and #[a(href='/readings') review] software-related books.
+          | I also make #[a(href='/cocktails') craft cocktails].
+        p
+          | I love exploring new places and have lived in Togo, Mali, Zambia, South Africa, Germany,
+          | Scotland, Ireland, Canada and the United States.
+        p
+          | I'm married to the amazing #[a(href='//koalacoder.com') Laura Barluzzi].
+
+    script
+      include /script.js

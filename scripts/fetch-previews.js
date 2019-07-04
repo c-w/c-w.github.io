@@ -2,16 +2,18 @@
 /* eslint no-console: "off" */
 
 const cheerio = require('cheerio');
-const fs = require('fs-extra');
-const process = require('process');
 const fetch = require('node-fetch');
+const fs = require('fs-extra');
+const path = require('path');
+const process = require('process');
+const pug = require('pug');
 const yargs = require('yargs');
 
 const argv = yargs
   .option('i', {
     alias: 'input',
     type: 'string',
-    describe: 'HTML file for which to fetch link previews',
+    describe: 'Pug template for which to fetch link previews',
     coerce: arg => {
       if (!fs.lstatSync(arg).isFile()) {
         throw new Error(`${arg} is not a file`);
@@ -53,7 +55,9 @@ const fetchPreviewInfo = (uri) => {
     });
 };
 
-const htmlContent = fs.readFileSync(argv.input, 'utf-8');
+const htmlContent = pug.compileFile(argv.input, {
+  basedir: path.dirname(argv.input),
+})();
 const $ = cheerio.load(htmlContent);
 
 const previewLinks = $('a.preview').get().map(linkNode => linkNode.attribs.href);

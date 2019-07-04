@@ -1,6 +1,8 @@
 node_modules/
 package-lock.json
 build/
+deploy/
 github.svg
 previews.json
 prs.json
+src/*.html
