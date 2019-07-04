@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 window.conway = (function() {
   class WrappingArray {
     constructor(entries) {

@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 (function() {
   const removeClass = (node, classNameRegExp) => node.className = node.className.replace(classNameRegExp, '');
 

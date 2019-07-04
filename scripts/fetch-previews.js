@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /* eslint no-console: "off" */
+/* eslint-env node */
 
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');

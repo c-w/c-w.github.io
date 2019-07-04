@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /* eslint no-console: "off" */
+/* eslint-env node */
 
 const fs = require('fs');
 const ghpages = require('gh-pages');
