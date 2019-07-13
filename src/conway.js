@@ -52,30 +52,33 @@ window.conway = (function() {
     _getNeighbors(x, y) {
       return [
         this._board.get(x - 1, y - 1),
-        this._board.get(x    , y - 1),
+        this._board.get(x, y - 1),
         this._board.get(x + 1, y - 1),
-        this._board.get(x - 1, y    ),
-        this._board.get(x + 1, y    ),
+        this._board.get(x - 1, y),
+        this._board.get(x + 1, y),
         this._board.get(x - 1, y + 1),
-        this._board.get(x    , y + 1),
+        this._board.get(x, y + 1),
         this._board.get(x + 1, y + 1),
       ];
     }
 
     _getNextState(x, y) {
-      const numLiveNeighbors = this._getNeighbors(x, y)
-        .filter(neighbor => neighbor != null && neighbor.state === 'alive')
-        .length;
+      const numLiveNeighbors = this._getNeighbors(x, y).filter(
+        neighbor => neighbor != null && neighbor.state === 'alive'
+      ).length;
 
-      const isAlive = this._board.get(x, y).state === 'alive'
-        ? numLiveNeighbors === 2 || numLiveNeighbors === 3
-        : numLiveNeighbors === 3;
+      const isAlive =
+        this._board.get(x, y).state === 'alive'
+          ? numLiveNeighbors === 2 || numLiveNeighbors === 3
+          : numLiveNeighbors === 3;
 
       return isAlive ? 'alive' : 'dead';
     }
 
     _nextStep() {
-      this._board.forEach(({ value, x, y }) => value.nextState = this._getNextState(x, y));
+      this._board.forEach(
+        ({ value, x, y }) => (value.nextState = this._getNextState(x, y))
+      );
 
       let converged = true;
       this._board.forEach(({ value }) => {
@@ -102,11 +105,15 @@ window.conway = (function() {
     }
 
     show() {
-      this._board.forEach(({ value }) => value.element.setAttribute('data-conway-state', value.state));
+      this._board.forEach(({ value }) =>
+        value.element.setAttribute('data-conway-state', value.state)
+      );
     }
 
     reset() {
-      this._board.forEach(({ value }) => value.element.setAttribute('data-conway-state', ''));
+      this._board.forEach(({ value }) =>
+        value.element.setAttribute('data-conway-state', '')
+      );
     }
 
     static build(rootElement) {
@@ -121,7 +128,7 @@ window.conway = (function() {
           value: {
             element: rect,
             state: isAlive ? 'alive' : 'dead',
-          }
+          },
         });
       }
 
@@ -129,7 +136,10 @@ window.conway = (function() {
     }
 
     static injectStyle(rootElement) {
-      const link = rootElement.createElementNS('http://www.w3.org/1999/xhtml', 'link');
+      const link = rootElement.createElementNS(
+        'http://www.w3.org/1999/xhtml',
+        'link'
+      );
       link.setAttribute('href', './conway.css');
       link.setAttribute('type', 'text/css');
       link.setAttribute('rel', 'stylesheet');
@@ -139,7 +149,7 @@ window.conway = (function() {
   }
 
   return {
-    init: (rootElement) => {
+    init: rootElement => {
       Conway.injectStyle(rootElement);
 
       let epoch = 0;
@@ -170,7 +180,7 @@ window.conway = (function() {
         conway.reset();
       };
 
-      document.addEventListener('keydown', (event) => {
+      document.addEventListener('keydown', event => {
         if (event.key === 'n') {
           nextStep();
         } else if (event.key === 'b') {
@@ -180,7 +190,7 @@ window.conway = (function() {
         }
       });
 
-      rootElement.addEventListener('click', (event) => {
+      rootElement.addEventListener('click', event => {
         event.preventDefault();
 
         if (event.which === 1) {
@@ -190,7 +200,7 @@ window.conway = (function() {
         return false;
       });
 
-      rootElement.addEventListener('contextmenu', (event) => {
+      rootElement.addEventListener('contextmenu', event => {
         event.preventDefault();
 
         previousStep();
@@ -199,4 +209,4 @@ window.conway = (function() {
       });
     },
   };
-}());
+})();

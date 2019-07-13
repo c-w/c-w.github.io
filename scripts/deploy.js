@@ -27,7 +27,9 @@ const argv = yargs
     default: process.env.GITHUB_TOKEN,
     coerce: arg => {
       if (!arg) {
-        throw new Error(`Must specify -t [github-token] or GITHUB_TOKEN environment variable`)
+        throw new Error(
+          `Must specify -t [github-token] or GITHUB_TOKEN environment variable`
+        );
       }
       return arg;
     },
@@ -40,7 +42,9 @@ const argv = yargs
     default: process.env.TRAVIS_REPO_SLUG,
     coerce: arg => {
       if (!arg) {
-        throw new Error(`Must specify -r [github-repo] or TRAVIS_REPO_SLUG environment variable`)
+        throw new Error(
+          `Must specify -r [github-repo] or TRAVIS_REPO_SLUG environment variable`
+        );
       }
       return arg;
     },
@@ -71,21 +75,24 @@ const argv = yargs
     type: 'string',
     describe: 'Email to attach to deployment commit',
     default: 'travis@travis-ci.org',
-  })
-  .argv;
+  }).argv;
 
-ghpages.publish(argv.directory, {
-  repo: `https://${argv.githubToken}@github.com/${argv.githubRepo}`,
-  branch: argv.githubBranch,
-  message: `${argv.commitTitle}\n\n${argv.commitMessage}`,
-  user: {
-    name: argv.commitUser,
-    email: argv.commitEmail,
+ghpages.publish(
+  argv.directory,
+  {
+    repo: `https://${argv.githubToken}@github.com/${argv.githubRepo}`,
+    branch: argv.githubBranch,
+    message: `${argv.commitTitle}\n\n${argv.commitMessage}`,
+    user: {
+      name: argv.commitUser,
+      email: argv.commitEmail,
+    },
+    silent: true,
   },
-  silent: true,
-}, (err) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
+  err => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
   }
-});
+);

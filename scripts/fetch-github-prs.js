@@ -28,7 +28,9 @@ const argv = yargs
     default: (process.env.TRAVIS_REPO_SLUG || '').split('/')[0],
     coerce: arg => {
       if (!arg) {
-        throw new Error(`Must specify -u [github-user] or TRAVIS_REPO_SLUG environment variable`)
+        throw new Error(
+          `Must specify -u [github-user] or TRAVIS_REPO_SLUG environment variable`
+        );
       }
       return arg;
     },
@@ -41,18 +43,19 @@ const argv = yargs
     default: process.env.GITHUB_TOKEN,
     coerce: arg => {
       if (!arg) {
-        throw new Error(`Must specify -t [github-token] or GITHUB_TOKEN environment variable`)
+        throw new Error(
+          `Must specify -t [github-token] or GITHUB_TOKEN environment variable`
+        );
       }
       return arg;
     },
     demand: true,
-  })
-  .argv;
+  }).argv;
 
 const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
   return fetch('https://api.github.com/graphql', {
     headers: {
-      'Authorization': `Bearer ${argv.githubToken}`,
+      Authorization: `Bearer ${argv.githubToken}`,
       'User-Agent': `${argv.githubUser}.github.io`,
       'Content-Type': 'application/json',
     },
@@ -97,16 +100,20 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
       },
     }),
   })
-  .then(response => response.json())
-  .then(graphql => {
-    const { edges, nodes } = graphql.data.user.pullRequests;
+    .then(response => response.json())
+    .then(graphql => {
+      const { edges, nodes } = graphql.data.user.pullRequests;
 
-    nodes.forEach(node => results.push(node));
+      nodes.forEach(node => results.push(node));
 
-    return edges.length < fetchSize
-      ? Promise.resolve()
-      : fetchAllPullRequests({ cursor: last(edges).cursor, fetchSize, results });
-  });
+      return edges.length < fetchSize
+        ? Promise.resolve()
+        : fetchAllPullRequests({
+            cursor: last(edges).cursor,
+            fetchSize,
+            results,
+          });
+    });
 };
 
 const pullRequests = [];

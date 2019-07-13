@@ -34,15 +34,14 @@ const argv = yargs
       return arg;
     },
     demand: true,
-  })
-  .argv;
+  }).argv;
 
 const getOpenGraphValue = ($, og) => {
   const node = $(`meta[property="og:${og}"]`).get(0);
   return node ? node.attribs.content.trim() : '';
-}
+};
 
-const fetchPreviewInfo = (uri) => {
+const fetchPreviewInfo = uri => {
   return fetch(uri)
     .then(response => response.text())
     .then(html => {
@@ -61,15 +60,21 @@ const htmlContent = pug.compileFile(argv.input, {
 })();
 const $ = cheerio.load(htmlContent);
 
-const previewLinks = $('a.preview').get().map(linkNode => linkNode.attribs.href);
+const previewLinks = $('a.preview')
+  .get()
+  .map(linkNode => linkNode.attribs.href);
 
 Promise.all(previewLinks.map(fetchPreviewInfo))
   .then(previewInfos => {
     const previews = {};
-    previewInfos.filter(info => info).forEach(({ uri, image, title, description }) => {
-      previews[uri] = { image, title, description };
+    previewInfos
+      .filter(info => info)
+      .forEach(({ uri, image, title, description }) => {
+        previews[uri] = { image, title, description };
+      });
+    return fs.writeFile(argv.output, JSON.stringify(previews, null, 2), {
+      encoding: 'utf-8',
     });
-    return fs.writeFile(argv.output, JSON.stringify(previews, null, 2), { encoding: 'utf-8' });
   })
   .catch(error => {
     console.error(error);

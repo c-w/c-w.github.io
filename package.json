@@ -32,10 +32,11 @@
     "build": "run-s build.js build.css build.html",
     "postbuild": "copyfiles --flat CNAME src/github.svg src/previews.json src/favicon.ico \"build/*.html\" \"build/conway.{js,css}\" deploy",
 
+    "lint.prettier": "prettier --check \"{src,scripts}/*.js\"",
     "lint.js": "eslint src/ scripts/",
     "lint.pug": "foreach --glob \"src/*.pug\" --execute \"pug-lint {{path}}\"",
     "lint.css": "stylelint \"src/*.css\"",
-    "lint": "run-s lint.js lint.pug lint.css"
+    "lint": "run-s lint.prettier lint.js lint.pug lint.css"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
@@ -53,6 +54,7 @@
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.3.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
     "pug": "^2.0.4",
     "pug-cli": "^1.0.0-alpha6",
     "pug-lint": "^2.6.0",

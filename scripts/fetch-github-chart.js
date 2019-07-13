@@ -27,13 +27,14 @@ const argv = yargs
     default: (process.env.TRAVIS_REPO_SLUG || '').split('/')[0],
     coerce: arg => {
       if (!arg) {
-        throw new Error(`Must specify -u [github-user] or TRAVIS_REPO_SLUG environment variable`)
+        throw new Error(
+          `Must specify -u [github-user] or TRAVIS_REPO_SLUG environment variable`
+        );
       }
       return arg;
     },
     demand: true,
-  })
-  .argv;
+  }).argv;
 
 fetch(`https://ghchart.rshah.org/${argv.githubUser}`)
   .then(response => {

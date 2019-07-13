@@ -1,9 +1,10 @@
 /* eslint-env browser */
 
 (function() {
-  const removeClass = (node, classNameRegExp) => node.className = node.className.replace(classNameRegExp, '');
+  const removeClass = (node, classNameRegExp) =>
+    (node.className = node.className.replace(classNameRegExp, ''));
 
-  const forceImageLoad = (img) => {
+  const forceImageLoad = img => {
     const imageSrc = img.src;
     img.src = '';
     img.src = imageSrc;
@@ -15,7 +16,7 @@
       if (request.readyState == 4 && request.status == 200) {
         callback(JSON.parse(request.responseText));
       }
-    }
+    };
     request.open('GET', url, true);
     request.send(null);
   };
@@ -27,9 +28,11 @@
     document.body.appendChild(script);
   };
 
-  const isMobileDevice = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isMobileDevice = () =>
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  const hasSpaceOnRight = (anchor, width) => (window.innerWidth - anchor.offsetWidth) / 2 > width;
+  const hasSpaceOnRight = (anchor, width) =>
+    (window.innerWidth - anchor.offsetWidth) / 2 > width;
 
   document.addEventListener('DOMContentLoaded', () => {
     const hidden = /\bhidden\b/;
@@ -44,7 +47,10 @@
         });
       }
     });
-    chart.addEventListener('error', () => { removeClass(body, hidden); chart.remove(); });
+    chart.addEventListener('error', () => {
+      removeClass(body, hidden);
+      chart.remove();
+    });
     forceImageLoad(chart);
 
     if (!isMobileDevice()) {
@@ -54,7 +60,7 @@
           return;
         }
 
-        getJson('./previews.json', (previews) => {
+        getJson('./previews.json', previews => {
           const previewNodes = document.getElementsByClassName('preview');
           for (let i = 0; i < previewNodes.length; i++) {
             const previewNode = previewNodes[i];
@@ -69,17 +75,19 @@
             tippy.one(tooltipAnchor, {
               arrow: true,
               maxWidth: tooltipWidth,
-              placement: hasSpaceOnRight(tooltipAnchor, tooltipWidth) ? 'right' : 'top',
+              placement: hasSpaceOnRight(tooltipAnchor, tooltipWidth)
+                ? 'right'
+                : 'top',
               delay: [20, 40],
-              content:
-                `<div class="preview">
+              content: `<div class="preview">
                   <img src="${preview.image}" />
-                  <div class="description">${preview.description || preview.title}</div>
-                 </div>`
+                  <div class="description">${preview.description ||
+                    preview.title}</div>
+                 </div>`,
             });
           }
         });
       });
     }
   });
-}());
+})();
