@@ -72,6 +72,10 @@
             const tooltipAnchor = previewNode.closest('li');
             const tooltipWidth = 300;
 
+            const previewImage = `<img src="${preview.image}" />`;
+            const previewText = preview.description || preview.title;
+            const previewDescription = `<div class="description">${previewText}</div>`;
+
             tippy.one(tooltipAnchor, {
               arrow: true,
               maxWidth: tooltipWidth,
@@ -79,11 +83,7 @@
                 ? 'right'
                 : 'top',
               delay: [20, 40],
-              content: `<div class="preview">
-                  <img src="${preview.image}" />
-                  <div class="description">${preview.description ||
-                    preview.title}</div>
-                 </div>`,
+              content: `<div class="preview">${previewImage}${previewDescription}</div>`,
             });
           }
         });
