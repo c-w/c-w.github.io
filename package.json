@@ -7,11 +7,12 @@
     "npm": ">=5.6.0"
   },
   "scripts": {
-    "clean": "rimraf build deploy",
+    "clean": "rimraf build deploy src/conway.js \"src/*.html\"",
 
     "prestart": "run-s clean fetch",
-    "start": "concurrently --kill-others \"npm run start.server\" \"npm run start.pug\"",
+    "start": "concurrently --kill-others \"npm run start.ts\" \"npm run start.server\" \"npm run start.pug\"",
     "start.pug": "pug src --obj src/prs.json --basedir src --watch --pretty --out src",
+    "start.ts": "tsc --watch",
     "start.server": "reload --browser --dir src",
     "start.prod": "reload --browser --dir deploy",
 
@@ -24,19 +25,22 @@
     "fetch": "run-p fetch.previews fetch.chart fetch.prs",
 
     "prebuild": "mkdirp build deploy",
+    "build.ts": "foreach --glob \"src/*.ts\" --execute \"tsc {{path}} --outFile build/{{name}}.es5\"",
     "build.js.compile": "foreach --glob \"src/*.js\" --execute \"babel {{path}} --out-file build/{{name}}.es5\"",
     "build.js.minify": "foreach --glob \"build/*.es5\" --execute \"uglifyjs {{path}} --compress --mangle --output build/{{name}}.js\"",
-    "build.js": "run-s build.js.compile build.js.minify",
+    "build.js": "run-s build.ts build.js.compile build.js.minify",
     "build.css": "foreach --glob \"src/*.css\" --execute \"csso --input {{path}} --output build/{{name}}.css\"",
     "build.html": "pug src --obj src/prs.json --basedir build --out build",
     "build": "run-s build.js build.css build.html",
     "postbuild": "copyfiles --flat CNAME src/github.svg src/previews.json src/favicon.ico \"build/*.html\" \"build/conway.{js,css}\" deploy",
 
-    "lint.prettier": "prettier --check \"{src,scripts}/*.js\"",
+    "prelint": "run-s clean",
+    "lint.prettier": "prettier --check \"{src,scripts}/*.{ts,js}\"",
+    "lint.ts": "tslint \"src/*.ts\"",
     "lint.js": "eslint src/ scripts/",
     "lint.pug": "foreach --glob \"src/*.pug\" --execute \"pug-lint {{path}}\"",
     "lint.css": "stylelint \"src/*.css\"",
-    "lint": "run-s lint.prettier lint.js lint.pug lint.css"
+    "lint": "run-s lint.prettier lint.ts lint.js lint.pug lint.css"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
@@ -63,6 +67,9 @@
     "rimraf": "^2.6.3",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3",
     "uglify-js": "^3.6.0",
     "yargs": "^13.2.2"
   }

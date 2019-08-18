@@ -5,4 +5,5 @@ deploy/
 github.svg
 previews.json
 prs.json
+src/conway.js
 src/*.html
