@@ -10,7 +10,7 @@
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
   "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
-    "image": "https://www.microsoft.com/developerblog//wp-content/uploads/arccos-hero-otsu.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/arccos-hero-otsu.png",
     "title": "Using Otsu's method to generate data for training of deep learning image segmentation models - Developer Blog",
     "description": "In this article, we introduce a technique to rapidly pre-label training data for image segmentation models such that annotators no longer have to painstakingly hand-annotate every pixel of interest in an image. The approach is implemented in Python and OpenCV and extensible to any image segmentation task that aims to identify a subset of visually distinct pixels in an image."
   },
