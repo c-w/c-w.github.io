@@ -67,6 +67,7 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
             pullRequests(
               first: $fetchSize,
               after: $cursor,
+              states: [OPEN, MERGED],
               orderBy: {
                 field: CREATED_AT,
                 direction: DESC
