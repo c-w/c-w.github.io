@@ -20,7 +20,7 @@
     "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
   },
   "https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/ascoderu-travis-ci-story-hero.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/ascoderu-travis-ci-story-hero.png",
     "title": "Continuous Delivery for Service Fabric via Github, Travis CI and Docker Compose - Developer Blog",
     "description": "This article describes how to use GitHub, Travis CI and Docker Compose to build a simple continuous delivery pipeline to deploy Linux Docker containers to a Service Fabric cluster of Linux hosts."
   },
