@@ -10,7 +10,7 @@
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
   "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
-    "image": "https://www.microsoft.com/developerblog//wp-content/uploads/arccos-hero-otsu.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/arccos-hero-otsu.png",
     "title": "Using Otsu's method to generate data for training of deep learning image segmentation models - Developer Blog",
     "description": "In this article, we introduce a technique to rapidly pre-label training data for image segmentation models such that annotators no longer have to painstakingly hand-annotate every pixel of interest in an image. The approach is implemented in Python and OpenCV and extensible to any image segmentation task that aims to identify a subset of visually distinct pixels in an image."
   },
@@ -20,12 +20,12 @@
     "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
   },
   "https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/": {
-    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/ascoderu-travis-ci-story-hero.png",
+    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/ascoderu-travis-ci-story-hero.png",
     "title": "Continuous Delivery for Service Fabric via Github, Travis CI and Docker Compose - Developer Blog",
     "description": "This article describes how to use GitHub, Travis CI and Docker Compose to build a simple continuous delivery pipeline to deploy Linux Docker containers to a Service Fabric cluster of Linux hosts."
   },
   "https://www.microsoft.com/developerblog/2018/01/09/deploying-a-linux-python-web-application-to-service-fabric-via-docker-compose/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/ascoderu-service-fabric-story-hero.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/ascoderu-service-fabric-story-hero.png",
     "title": "Deploying a Linux Python web application to Service Fabric via Docker Compose - Developer Blog",
     "description": "This article covers how to take a standard Python web service consisting of an application tier, a WSGI server, and a Nginx reverse proxy and deploy it via Linux containers to a Linux cluster managed by Azure Service Fabric using only simple tooling like Docker Compose."
   },
