@@ -10,7 +10,7 @@
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
   "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
-    "image": "https://www.microsoft.com/developerblog//wp-content/uploads/arccos-hero-otsu.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/arccos-hero-otsu.png",
     "title": "Using Otsu's method to generate data for training of deep learning image segmentation models - Developer Blog",
     "description": "In this article, we introduce a technique to rapidly pre-label training data for image segmentation models such that annotators no longer have to painstakingly hand-annotate every pixel of interest in an image. The approach is implemented in Python and OpenCV and extensible to any image segmentation task that aims to identify a subset of visually distinct pixels in an image."
   },
@@ -45,9 +45,9 @@
     "description": "A Java client for the Azure Cognitive Services speech-to-text WebSocket protocol which enables near real-time transcription of English, French, Chinese..."
   },
   "https://www.podcastinit.com/lokole-with-clemens-wolff-episode-167/": {
-    "image": "https://www.podcastinit.com/wp-content/uploads/revised_logo_with_title_large.png",
+    "image": "https://i2.wp.com/www.pythonpodcast.com/wp-content/uploads/revised_logo_with_title.png",
     "title": "Bringing Africa Online At Ascoderu with Clemens Wolff - Episode 167",
-    "description": "Bringing Africa Online Using E-mail And Python (Interview)\nThe future is here, it's just not evenly distributed. One of the places where this is especially true is in sub-Saharan Africa which is a vast region with little to no reliable internet connectivity. To help communities in this region leapfrog infrastructure challenges and gain access to opportunities for education and market information the Ascoderu non-profit has built Lokole. In this episode one of the lead engineers on the project, Clemens Wolff, explains what it is, how it is built, and how the venerable e-mail protocols can continue to provide access cheaply and reliably."
+    "description": "Summary The future is here, it's just not evenly distributed. One of the places where this is especially true is in sub-Saharan Africa which is a vast regi"
   },
   "https://www.youtube.com/watch?v=-ej6lf9RfBQ#t=20m40s": {
     "image": "https://i.ytimg.com/vi/-ej6lf9RfBQ/hqdefault.jpg",
