@@ -65,7 +65,7 @@
     "pug-lint-config-clock": "^2.0.0",
     "reload": "^2.4.0",
     "rimraf": "^2.6.3",
-    "stylelint": "^9.9.0",
+    "stylelint": "^12.0.1",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",

@@ -80,6 +80,20 @@ p,
   max-width: 20em;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #2f2f2f;
+  }
+
+  #content {
+    color: #fdfdfd;
+  }
+
+  a {
+    color: #90f9f8;
+  }
+}
+
 @media (max-width: 700px) {
   #chart {
     display: none;
