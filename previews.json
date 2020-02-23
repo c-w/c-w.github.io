@@ -1,6 +1,6 @@
 {
   "https://www.microsoft.com/developerblog/2019/01/18/running-parallel-apache-spark-notebook-workloads-on-azure-databricks/": {
-    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/databricks-parallel-spark-cover.png",
+    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/databricks-parallel-spark-cover.png",
     "title": "Running Parallel Apache Spark Notebook Workloads On Azure Databricks - Developer Blog",
     "description": "This article walks through the development of a technique for running Spark jobs in parallel on Azure Databricks. The technique enabled us to reduce the processing times for JetBlue's reporting threefold while keeping the business logic implementation straight forward. The technique can be re-used for any notebooks-based Spark workload on Azure Databricks."
   },
@@ -48,10 +48,5 @@
     "image": "https://i2.wp.com/www.pythonpodcast.com/wp-content/uploads/revised_logo_with_title.png",
     "title": "Bringing Africa Online At Ascoderu with Clemens Wolff - Episode 167",
     "description": "The future is here, it's just not evenly distributed. One of the places where this is especially true is in sub-Saharan Africa which is a vast region with littl"
-  },
-  "https://www.youtube.com/watch?v=-ej6lf9RfBQ#t=20m40s": {
-    "image": "https://i.ytimg.com/vi/-ej6lf9RfBQ/hqdefault.jpg",
-    "title": "#Code & Coffee – June 22, 2017",
-    "description": ""
   }
 }
