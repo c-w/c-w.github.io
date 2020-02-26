@@ -1,6 +1,6 @@
 {
   "https://www.microsoft.com/developerblog/2019/01/18/running-parallel-apache-spark-notebook-workloads-on-azure-databricks/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/databricks-parallel-spark-cover.png",
+    "image": "https://codestoryedge.azurewebsites.net/developerblog/wp-content/uploads/databricks-parallel-spark-cover.png",
     "title": "Running Parallel Apache Spark Notebook Workloads On Azure Databricks - Developer Blog",
     "description": "This article walks through the development of a technique for running Spark jobs in parallel on Azure Databricks. The technique enabled us to reduce the processing times for JetBlue's reporting threefold while keeping the business logic implementation straight forward. The technique can be re-used for any notebooks-based Spark workload on Azure Databricks."
   },
