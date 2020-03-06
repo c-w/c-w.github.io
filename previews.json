@@ -1,48 +1,13 @@
 {
-  "https://www.microsoft.com/developerblog/2019/01/18/running-parallel-apache-spark-notebook-workloads-on-azure-databricks/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/databricks-parallel-spark-cover.png",
-    "title": "Running Parallel Apache Spark Notebook Workloads On Azure Databricks - Developer Blog",
-    "description": "This article walks through the development of a technique for running Spark jobs in parallel on Azure Databricks. The technique enabled us to reduce the processing times for JetBlue's reporting threefold while keeping the business logic implementation straight forward. The technique can be re-used for any notebooks-based Spark workload on Azure Databricks."
-  },
   "https://medium.com/@clemens.wolff/using-the-ambassador-pattern-for-reliable-pipes-and-filters-text-processing-9ebbea8f82c4": {
     "image": "https://miro.medium.com/max/1123/1*W5cc6p_E1zKpFdXoTgcCOQ.png",
     "title": "Using the ambassador pattern for reliable pipes-and-filters text processing",
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
-  "https://www.microsoft.com/developerblog/2018/05/17/using-otsus-method-generate-data-training-deep-learning-image-segmentation-models/": {
-    "image": "https://www.microsoft.com/developerblog//wp-content/uploads/arccos-hero-otsu.png",
-    "title": "Using Otsu's method to generate data for training of deep learning image segmentation models - Developer Blog",
-    "description": "In this article, we introduce a technique to rapidly pre-label training data for image segmentation models such that annotators no longer have to painstakingly hand-annotate every pixel of interest in an image. The approach is implemented in Python and OpenCV and extensible to any image segmentation task that aims to identify a subset of visually distinct pixels in an image."
-  },
   "https://medium.com/@clemens.wolff/leveraging-microservices-for-relationship-based-text-exploration-9efd2a54f7ae": {
     "image": "https://miro.medium.com/max/539/1*hPsN8asQcaCSElx3N7df2g.png",
     "title": "Leveraging microservices for relationship-based text exploration",
     "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
-  },
-  "https://www.microsoft.com/developerblog/2018/01/18/continuous-delivery-service-fabric-via-github-travis-ci-docker-compose/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/ascoderu-travis-ci-story-hero.png",
-    "title": "Continuous Delivery for Service Fabric via Github, Travis CI and Docker Compose - Developer Blog",
-    "description": "This article describes how to use GitHub, Travis CI and Docker Compose to build a simple continuous delivery pipeline to deploy Linux Docker containers to a Service Fabric cluster of Linux hosts."
-  },
-  "https://www.microsoft.com/developerblog/2018/01/09/deploying-a-linux-python-web-application-to-service-fabric-via-docker-compose/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/ascoderu-service-fabric-story-hero.png",
-    "title": "Deploying a Linux Python web application to Service Fabric via Docker Compose - Developer Blog",
-    "description": "This article covers how to take a standard Python web service consisting of an application tier, a WSGI server, and a Nginx reverse proxy and deploy it via Linux containers to a Linux cluster managed by Azure Service Fabric using only simple tooling like Docker Compose."
-  },
-  "https://www.microsoft.com/developerblog/2017/12/05/comparing-transfer-learning-systems-custom-vision-service-vs-inception-vs-mobilenet/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/reverb-custom-vision-featured.png",
-    "title": "Comparing Image-Classification Systems: Custom Vision Service vs. Inception - Developer Blog",
-    "description": "This story covers how to get started with transfer-learning and build image classification models in Python with the Custom Vision Service. We compare the results with the popular Tensorflow-based models Inception and MobileNet."
-  },
-  "https://www.microsoft.com/developerblog/2017/11/20/opener-permissively-licensed-named-entity-recognition-on-the-jvm/": {
-    "image": "https://www.microsoft.com/developerblog//wp-content/uploads/fortis-ner.png",
-    "title": "Permissively-Licensed Named Entity Recognition on the JVM - Developer Blog",
-    "description": "Named entity recognition using Spark Streaming and Scala. A solution based on Docker containers and Azure Web Apps for Linux."
-  },
-  "https://www.microsoft.com/developerblog/2017/11/01/building-a-custom-spark-connector-for-near-real-time-speech-to-text-transcription/": {
-    "image": "https://codestoryedge.azureedge.net/developerblog/wp-content/uploads/fortis-radio-to-text-spark.png",
-    "title": "Building a Custom Spark Connector for Near Real-Time Speech-to-Text Transcription - Developer Blog",
-    "description": "A Java client for the Azure Cognitive Services speech-to-text WebSocket protocol which enables near real-time transcription of English, French, Chinese..."
   },
   "https://www.podcastinit.com/lokole-with-clemens-wolff-episode-167/": {
     "image": "https://i2.wp.com/www.pythonpodcast.com/wp-content/uploads/revised_logo_with_title.png",
