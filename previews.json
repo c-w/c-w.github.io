@@ -4,19 +4,9 @@
     "title": "Using the ambassador pattern for reliable pipes-and-filters text processing",
     "description": "In this article we’ll show how we improved the reliability of pipes-and-filters via task queues and the ambassador container pattern."
   },
-  "https://medium.com/@clemens.wolff/leveraging-microservices-for-relationship-based-text-exploration-9efd2a54f7ae": {
-    "image": "https://miro.medium.com/max/539/1*hPsN8asQcaCSElx3N7df2g.png",
-    "title": "Leveraging microservices for relationship-based text exploration",
-    "description": "Using Docker, Open Information Extraction, RDF and SPARQL to make sense of large document collections."
-  },
   "https://www.podcastinit.com/lokole-with-clemens-wolff-episode-167/": {
     "image": "https://i2.wp.com/www.pythonpodcast.com/wp-content/uploads/revised_logo_with_title.png",
     "title": "Bringing Africa Online At Ascoderu with Clemens Wolff - Episode 167",
     "description": "The future is here, it's just not evenly distributed. One of the places where this is especially true is in sub-Saharan Africa which is a vast region with littl"
-  },
-  "https://www.youtube.com/watch?v=-ej6lf9RfBQ#t=20m40s": {
-    "image": "https://i.ytimg.com/vi/-ej6lf9RfBQ/hqdefault.jpg",
-    "title": "#Code & Coffee – June 22, 2017",
-    "description": ""
   }
 }
