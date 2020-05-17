@@ -28,3 +28,36 @@
 .icon.clock::before {
   background-image: url(https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clock.svg);
 }
+
+@media (prefers-color-scheme: dark) {
+  a:hover {
+    color: #90f9f8;
+  }
+
+  .icon::before {
+    filter: invert();
+  }
+
+  .card {
+    background-color: #869680;
+  }
+
+  .thumb[data-src],
+  .card-header {
+    background-color: #1c2541;
+  }
+
+  .list-group-item {
+    background-color: #2e6a70;
+  }
+
+  .thumb {
+    background-color: #fdfdfd;
+  }
+
+  .card,
+  .card-header,
+  .list-group-item {
+    border-color: #869680 !important;
+  }
+}
