@@ -92,6 +92,28 @@
       link.setAttribute('type', 'text/css');
       link.setAttribute('rel', 'stylesheet');
       const svg = rootElement.getElementsByTagName('svg')[0];
+
+      const rects = svg.getElementsByTagName('rect');
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < rects.length; i++) {
+        const rect = rects[i];
+        const score = Number(rect.getAttribute('data-score'));
+
+        let category;
+        if (score === 0) {
+          category = '0';
+        } else if (score <= 10) {
+          category = '10';
+        } else if (score <= 20) {
+          category = '20';
+        } else if (score <= 30) {
+          category = '30';
+        } else {
+          category = '40';
+        }
+        rect.setAttribute('data-category', category);
+      }
+
       svg.insertBefore(link, svg.firstChild);
     }
 

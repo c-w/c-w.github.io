@@ -1,7 +1,65 @@
-[data-conway-state=alive] {
+rect[data-conway-state=alive] {
+  fill: #1e6823 !important;
+}
+
+rect[data-conway-state=dead] {
+  fill: #eee !important;
+}
+
+[data-category="0"] {
+  fill: #eee !important;
+}
+
+[data-category="10"] {
   fill: #d6e685 !important;
 }
 
-[data-conway-state=dead] {
-  fill: #eee !important;
+[data-category="20"] {
+  fill: #8cc665 !important;
+}
+
+[data-category="30"] {
+  fill: #44a340 !important;
+}
+
+[data-category="40"] {
+  fill: #1e6823 !important;
+}
+
+text {
+  fill: #2f2f2f !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-category="0"] {
+    fill: #1c2541 !important;
+  }
+
+  [data-category="10"] {
+    fill: #2e6a70 !important;
+  }
+
+  [data-category="20"] {
+    fill: #869680 !important;
+  }
+
+  [data-category="30"] {
+    fill: #8fc9c2 !important;
+  }
+
+  [data-category="40"] {
+    fill: #6fffe9 !important;
+  }
+
+  text {
+    fill: #fdfdfd !important;
+  }
+
+  rect[data-conway-state=alive] {
+    fill: #6fffe9 !important;
+  }
+
+  rect[data-conway-state=dead] {
+    fill: #1c2541 !important;
+  }
 }

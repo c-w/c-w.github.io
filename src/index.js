@@ -40,10 +40,10 @@
     const body = document.body;
 
     chart.addEventListener('load', () => {
-      removeClass(body, hidden);
       if (!window.conway) {
         loadScript('./conway.js', () => {
           window.conway.init(chart.contentDocument);
+          removeClass(body, hidden);
         });
       }
     });
