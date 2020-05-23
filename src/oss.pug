@@ -2,7 +2,10 @@
   let repos = {};
 
   pullRequests.forEach(pr => {
-    if (pr.state !== 'OPEN' && pr.state !== 'MERGED') {
+    const isOpenOrMerged = pr.state === 'OPEN' || pr.state === 'MERGED';
+    const isMergedExternally = pr.state === 'CLOSED' && pr.repository.name === 'hadoop';
+
+    if (!isOpenOrMerged && !isMergedExternally) {
       return;
     }
 

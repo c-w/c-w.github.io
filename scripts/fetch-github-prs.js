@@ -68,6 +68,7 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
               first: $fetchSize,
               after: $cursor,
               states: [
+                CLOSED,
                 OPEN,
                 MERGED
               ],
