@@ -83,40 +83,6 @@
       return new Conway(new WrappingArray(cells));
     }
 
-    public static injectStyle(rootElement: Document) {
-      const link = rootElement.createElementNS(
-        'http://www.w3.org/1999/xhtml',
-        'link'
-      );
-      link.setAttribute('href', './conway.css');
-      link.setAttribute('type', 'text/css');
-      link.setAttribute('rel', 'stylesheet');
-      const svg = rootElement.getElementsByTagName('svg')[0];
-
-      const rects = svg.getElementsByTagName('rect');
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < rects.length; i++) {
-        const rect = rects[i];
-        const score = Number(rect.getAttribute('data-score'));
-
-        let category;
-        if (score === 0) {
-          category = '0';
-        } else if (score <= 10) {
-          category = '10';
-        } else if (score <= 20) {
-          category = '20';
-        } else if (score <= 30) {
-          category = '30';
-        } else {
-          category = '40';
-        }
-        rect.setAttribute('data-category', category);
-      }
-
-      svg.insertBefore(link, svg.firstChild);
-    }
-
     private board: WrappingArray<ICell>;
 
     constructor(board: WrappingArray<ICell>) {
@@ -193,8 +159,6 @@
 
   return {
     init: (rootElement: Document) => {
-      Conway.injectStyle(rootElement);
-
       let epoch = 0;
 
       const nextStep = () => {

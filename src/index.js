@@ -24,6 +24,7 @@
   const loadScript = (url, callback) => {
     const script = document.createElement('script');
     script.addEventListener('load', callback);
+    script.addEventListener('error', callback);
     script.src = url;
     document.body.appendChild(script);
   };
@@ -34,6 +35,40 @@
   const hasSpaceOnRight = (anchor, width) =>
     (window.innerWidth - anchor.offsetWidth) / 2 > width;
 
+  const injectChartStyle = rootElement => {
+    const link = rootElement.createElementNS(
+      'http://www.w3.org/1999/xhtml',
+      'link'
+    );
+    link.setAttribute('href', './conway.css');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('rel', 'stylesheet');
+    const svg = rootElement.getElementsByTagName('svg')[0];
+
+    const rects = svg.getElementsByTagName('rect');
+
+    for (let i = 0; i < rects.length; i++) {
+      const rect = rects[i];
+      const score = Number(rect.getAttribute('data-score'));
+
+      let category;
+      if (score === 0) {
+        category = '0';
+      } else if (score <= 10) {
+        category = '10';
+      } else if (score <= 20) {
+        category = '20';
+      } else if (score <= 30) {
+        category = '30';
+      } else {
+        category = '40';
+      }
+      rect.setAttribute('data-category', category);
+    }
+
+    svg.insertBefore(link, svg.firstChild);
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     const hidden = /\bhidden\b/;
     const chart = document.getElementById('chart');
@@ -41,8 +76,12 @@
 
     chart.addEventListener('load', () => {
       if (!window.conway) {
+        const chartBody = chart.contentDocument;
+        injectChartStyle(chartBody);
         loadScript('./conway.js', () => {
-          window.conway.init(chart.contentDocument);
+          if (window.conway) {
+            window.conway.init(chartBody);
+          }
           removeClass(body, hidden);
         });
       }
