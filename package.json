@@ -13,8 +13,8 @@
     "start": "concurrently --kill-others \"npm run start.ts\" \"npm run start.server\" \"npm run start.pug\"",
     "start.pug": "pug src --obj src/prs.json --basedir src --watch --pretty --out src",
     "start.ts": "tsc --watch",
-    "start.server": "reload --browser --dir src",
-    "start.prod": "reload --browser --dir deploy",
+    "start.server": "reload --dir src",
+    "start.prod": "reload --dir deploy",
 
     "predeploy": "run-s clean fetch build",
     "deploy": "node scripts/deploy.js --directory deploy",
