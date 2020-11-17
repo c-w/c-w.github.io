@@ -25,11 +25,11 @@ const argv = yargs
     alias: 'github-user',
     type: 'string',
     describe: 'The Github user for which to fetch the contributions chart',
-    default: (process.env.TRAVIS_REPO_SLUG || '').split('/')[0],
+    default: (process.env.GITHUB_REPOSITORY || '').split('/')[0],
     coerce: arg => {
       if (!arg) {
         throw new Error(
-          `Must specify -u [github-user] or TRAVIS_REPO_SLUG environment variable`
+          `Must specify -u [github-user] or GITHUB_REPOSITORY environment variable`
         );
       }
       return arg;

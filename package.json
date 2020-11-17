@@ -16,9 +16,6 @@
     "start.server": "reload --dir src",
     "start.prod": "reload --dir deploy",
 
-    "predeploy": "run-s clean fetch build",
-    "deploy": "node scripts/deploy.js --directory deploy",
-
     "fetch.previews": "node scripts/fetch-previews.js --input src/index.pug --output src/previews.json",
     "fetch.chart": "node scripts/fetch-github-chart.js --output src/github.svg",
     "fetch.prs": "node scripts/fetch-github-prs.js --output src/prs.json",
@@ -53,7 +50,6 @@
     "eslint": "^5.12.0",
     "foreach-cli": "^1.8.1",
     "fs-extra": "^7.0.1",
-    "gh-pages": "^2.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.3.0",
