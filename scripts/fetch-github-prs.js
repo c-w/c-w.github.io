@@ -4,7 +4,7 @@
 
 const fetch = require('node-fetch');
 const fs = require('fs-extra');
-const last = require('lodash/last');
+const findLast = require('lodash/findLast');
 const process = require('process');
 const yargs = require('yargs');
 
@@ -109,12 +109,12 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
     .then(graphql => {
       const { edges, nodes } = graphql.data.user.pullRequests;
 
-      nodes.forEach(node => results.push(node));
+      nodes.filter(node => node != null).forEach(node => results.push(node));
 
       return edges.length < fetchSize
         ? Promise.resolve()
         : fetchAllPullRequests({
-            cursor: last(edges).cursor,
+            cursor: findLast(edges, edge => edge != null).cursor,
             fetchSize,
             results,
           });
