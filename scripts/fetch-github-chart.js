@@ -37,9 +37,14 @@ const argv = yargs
   }).argv;
 
 fetch(`https://ghchart.rshah.org/${argv.githubUser}`)
-  .then(response => {
-    const output = fs.createWriteStream(argv.output);
-    response.body.pipe(output);
+  .then(response => response.text())
+  .then(chart => {
+    if (!chart.includes('<svg ')) {
+      console.error(chart);
+      process.exit(2);
+    }
+
+    return fs.writeFile(argv.output, chart, 'utf-8');
   })
   .catch(error => {
     console.error(error);
