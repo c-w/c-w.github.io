@@ -75,8 +75,8 @@
             element: rect,
             state: isAlive ? 'alive' : 'dead',
           },
-          x: (Number(rect.getAttribute('x')) - 14) / 13,
-          y: (Number(rect.getAttribute('y')) - 14) / 13,
+          x: (Number(rect.getAttribute('x')) - 27) / 12,
+          y: (Number(rect.getAttribute('y')) - 20) / 12,
         });
       }
 
