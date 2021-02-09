@@ -66,6 +66,24 @@
 
       const cells: Array<IEntry<ICell>> = [];
 
+      const xValues = new Set<number>();
+      const yValues = new Set<number>();
+
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < rects.length; i++) {
+        const rect = rects[i];
+        xValues.add(Number(rect.getAttribute('x')));
+        yValues.add(Number(rect.getAttribute('y')));
+      }
+
+      const xs = Array.from(xValues).sort((a, b) => a - b);
+      const ys = Array.from(yValues).sort((a, b) => a - b);
+
+      const xMin = xs[0];
+      const yMin = ys[0];
+      const xStep = xs[1] - xs[0];
+      const yStep = ys[1] - ys[0];
+
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < rects.length; i++) {
         const rect = rects[i];
@@ -75,8 +93,8 @@
             element: rect,
             state: isAlive ? 'alive' : 'dead',
           },
-          x: (Number(rect.getAttribute('x')) - 27) / 12,
-          y: (Number(rect.getAttribute('y')) - 20) / 12,
+          x: (Number(rect.getAttribute('x')) - xMin) / xStep,
+          y: (Number(rect.getAttribute('y')) - yMin) / yStep,
         });
       }
 
