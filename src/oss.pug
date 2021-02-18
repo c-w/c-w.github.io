@@ -3,7 +3,7 @@
 
   pullRequests.forEach(pr => {
     const isOpenOrMerged = pr.state === 'OPEN' || pr.state === 'MERGED';
-    const isMergedExternally = pr.state === 'CLOSED' && pr.repository.name === 'hadoop';
+    const isMergedExternally = pr.state === 'CLOSED' && (pr.repository.name === 'hadoop' || pr.repository.name === 'bahir');
     const forceDisplay = pr.state === 'CLOSED' && pr.repository.name === 'rails';
 
     if (!isOpenOrMerged && !isMergedExternally && !forceDisplay) {
