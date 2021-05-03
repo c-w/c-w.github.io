@@ -29,7 +29,7 @@
     "build.css": "foreach --glob \"src/*.css\" --execute \"csso --input {{path}} --output build/{{name}}.css\"",
     "build.html": "pug src --obj src/prs.json --basedir build --out build",
     "build": "run-s build.js build.css build.html",
-    "postbuild": "copyfiles --flat CNAME src/github.svg src/previews.json src/favicon.ico \"build/*.html\" \"build/conway.{js,css}\" deploy",
+    "postbuild": "copyfiles --flat CNAME clemens.gpg src/github.svg src/previews.json src/favicon.ico \"build/*.html\" \"build/conway.{js,css}\" deploy",
 
     "prelint": "run-s clean",
     "lint.prettier": "prettier --check \"{src,scripts}/*.{ts,js}\"",
