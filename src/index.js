@@ -105,7 +105,7 @@
             const previewNode = previewNodes[i];
             const preview = previews[previewNode.getAttribute('href')];
             if (!preview) {
-              return;
+              continue;
             }
 
             const tooltipAnchor = previewNode.closest('li');
