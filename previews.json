@@ -26,7 +26,7 @@
   },
   "https://www.microsoft.com/developerblog/2017/11/20/opener-permissively-licensed-named-entity-recognition-on-the-jvm/": {
     "image": "https://devblogs.microsoft.com/cse/wp-content/uploads/sites/55/2017/11/featured.png",
-    "title": "Permissively-Licensed Named Entity Recognition on the JVM",
+    "title": "Permissively-Licensed Named Entity Recognition on the JVM - CSE Developer Blog",
     "description": "Named entity recognition using Spark Streaming and Scala. A solution based on Docker containers and Azure Web Apps for Linux."
   },
   "https://www.microsoft.com/developerblog/2017/11/01/building-a-custom-spark-connector-for-near-real-time-speech-to-text-transcription/": {
