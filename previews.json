@@ -21,7 +21,7 @@
   },
   "https://www.microsoft.com/developerblog/2017/12/05/comparing-transfer-learning-systems-custom-vision-service-vs-inception-vs-mobilenet/": {
     "image": "https://devblogs.microsoft.com/cse/wp-content/uploads/sites/55/2017/12/featured.png",
-    "title": "Comparing Image-Classification Systems: Custom Vision Service vs. Inception",
+    "title": "Comparing Image-Classification Systems: Custom Vision Service vs. Inception - CSE Developer Blog",
     "description": "This story covers how to get started with transfer-learning and build image classification models in Python with the Custom Vision Service. We compare the results with the popular Tensorflow-based models Inception and MobileNet."
   },
   "https://www.microsoft.com/developerblog/2017/11/20/opener-permissively-licensed-named-entity-recognition-on-the-jvm/": {
