@@ -15,7 +15,7 @@ const argv = yargs
     alias: 'input',
     type: 'string',
     describe: 'Pug template for which to fetch link previews',
-    coerce: arg => {
+    coerce: (arg) => {
       if (!fs.lstatSync(arg).isFile()) {
         throw new Error(`${arg} is not a file`);
       }
@@ -27,7 +27,7 @@ const argv = yargs
     alias: 'output',
     type: 'string',
     describe: 'Location where to store link previews file',
-    coerce: arg => {
+    coerce: (arg) => {
       if (process.env.FORCE_ASSET_REFRESH !== 'true' && fs.existsSync(arg)) {
         process.exit(0);
       }
@@ -41,10 +41,10 @@ const getOpenGraphValue = ($, og) => {
   return node ? node.attribs.content.trim() : '';
 };
 
-const fetchPreviewInfo = uri => {
+const fetchPreviewInfo = (uri) => {
   return fetch(uri)
-    .then(response => response.text())
-    .then(html => {
+    .then((response) => response.text())
+    .then((html) => {
       const $ = cheerio.load(html);
       const title = getOpenGraphValue($, 'title');
       const image = getOpenGraphValue($, 'image');
@@ -62,13 +62,13 @@ const $ = cheerio.load(htmlContent);
 
 const previewLinks = $('a.preview')
   .get()
-  .map(linkNode => linkNode.attribs.href);
+  .map((linkNode) => linkNode.attribs.href);
 
 Promise.all(previewLinks.map(fetchPreviewInfo))
-  .then(previewInfos => {
+  .then((previewInfos) => {
     const previews = {};
     previewInfos
-      .filter(info => info)
+      .filter((info) => info)
       .forEach(({ uri, image, title, description }) => {
         previews[uri] = { image, title, description };
       });
@@ -76,7 +76,7 @@ Promise.all(previewLinks.map(fetchPreviewInfo))
       encoding: 'utf-8',
     });
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

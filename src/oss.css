@@ -22,11 +22,11 @@
 }
 
 .icon.pull-request::before {
-  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/git-pull-request.svg);
+  background-image: url("https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/git-pull-request.svg");
 }
 
 .icon.clock::before {
-  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clock.svg);
+  background-image: url("https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clock.svg");
 }
 
 @media (prefers-color-scheme: dark) {

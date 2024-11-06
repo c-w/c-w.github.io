@@ -1,10 +1,10 @@
 /* eslint-env browser */
 
-(function() {
+(function () {
   const removeClass = (node, classNameRegExp) =>
     (node.className = node.className.replace(classNameRegExp, ''));
 
-  const forceImageLoad = img => {
+  const forceImageLoad = (img) => {
     const imageSrc = img.src;
     img.src = '';
     img.src = imageSrc;
@@ -35,7 +35,7 @@
   const hasSpaceOnRight = (anchor, width) =>
     (window.innerWidth - anchor.offsetWidth) / 2 > width;
 
-  const injectChartStyle = rootElement => {
+  const injectChartStyle = (rootElement) => {
     const link = rootElement.createElementNS(
       'http://www.w3.org/1999/xhtml',
       'link'
@@ -99,7 +99,7 @@
           return;
         }
 
-        getJson('./previews.json', previews => {
+        getJson('./previews.json', (previews) => {
           const previewNodes = document.getElementsByClassName('preview');
           for (let i = 0; i < previewNodes.length; i++) {
             const previewNode = previewNodes[i];

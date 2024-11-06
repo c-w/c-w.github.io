@@ -1,5 +1,5 @@
 /* eslint-env jquery */
 
-$(function() {
+$(function () {
   $('.lazy').Lazy();
 });

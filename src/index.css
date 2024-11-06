@@ -9,8 +9,8 @@ body {
   font-size: 1.1em;
   line-height: 1.5em;
   letter-spacing: 0.01em;
-  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-  text-rendering: optimizeLegibility;
+  font-family: Merriweather, Georgia, 'Times New Roman', Times, serif;
+  text-rendering: optimizelegibility;
   color: #2f2f2f;
   padding: 1em 2em;
 }
@@ -98,7 +98,7 @@ p,
   }
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
   #chart {
     display: none;
   }

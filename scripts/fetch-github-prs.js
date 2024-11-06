@@ -13,7 +13,7 @@ const argv = yargs
     alias: 'output',
     type: 'string',
     describe: 'Location where to store the Github PRs',
-    coerce: arg => {
+    coerce: (arg) => {
       if (process.env.FORCE_ASSET_REFRESH !== 'true' && fs.existsSync(arg)) {
         process.exit(0);
       }
@@ -26,7 +26,7 @@ const argv = yargs
     type: 'string',
     describe: 'The Github user for which to fetch the contributions chart',
     default: (process.env.GITHUB_REPOSITORY || '').split('/')[0],
-    coerce: arg => {
+    coerce: (arg) => {
       if (!arg) {
         throw new Error(
           `Must specify -u [github-user] or GITHUB_REPOSITORY environment variable`
@@ -41,7 +41,7 @@ const argv = yargs
     type: 'string',
     describe: 'Github access token used for deployment',
     default: process.env.GITHUB_TOKEN,
-    coerce: arg => {
+    coerce: (arg) => {
       if (!arg) {
         throw new Error(
           `Must specify -t [github-token] or GITHUB_TOKEN environment variable`
@@ -105,16 +105,18 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
       },
     }),
   })
-    .then(response => response.json())
-    .then(graphql => {
+    .then((response) => response.json())
+    .then((graphql) => {
       const { edges, nodes } = graphql.data.user.pullRequests;
 
-      nodes.filter(node => node != null).forEach(node => results.push(node));
+      nodes
+        .filter((node) => node != null)
+        .forEach((node) => results.push(node));
 
       return edges.length < fetchSize
         ? Promise.resolve()
         : fetchAllPullRequests({
-            cursor: findLast(edges, edge => edge != null).cursor,
+            cursor: findLast(edges, (edge) => edge != null).cursor,
             fetchSize,
             results,
           });
@@ -124,7 +126,7 @@ const fetchAllPullRequests = ({ cursor, fetchSize, results }) => {
 const pullRequests = [];
 fetchAllPullRequests({ cursor: null, fetchSize: 100, results: pullRequests })
   .then(() => fs.writeFile(argv.output, JSON.stringify({ pullRequests })))
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

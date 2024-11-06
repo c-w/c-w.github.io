@@ -12,7 +12,7 @@ const argv = yargs
     alias: 'output',
     type: 'string',
     describe: 'Location where to store the Github contributions chart',
-    coerce: arg => {
+    coerce: (arg) => {
       if (process.env.FORCE_ASSET_REFRESH !== 'true' && fs.existsSync(arg)) {
         process.exit(0);
       }
@@ -25,7 +25,7 @@ const argv = yargs
     type: 'string',
     describe: 'The Github user for which to fetch the contributions chart',
     default: (process.env.GITHUB_REPOSITORY || '').split('/')[0],
-    coerce: arg => {
+    coerce: (arg) => {
       if (!arg) {
         throw new Error(
           `Must specify -u [github-user] or GITHUB_REPOSITORY environment variable`
@@ -37,8 +37,8 @@ const argv = yargs
   }).argv;
 
 fetch(`https://ghchart.rshah.org/${argv.githubUser}`)
-  .then(response => response.text())
-  .then(chart => {
+  .then((response) => response.text())
+  .then((chart) => {
     if (!chart.includes('<svg ')) {
       console.error(chart);
       process.exit(2);
@@ -46,7 +46,7 @@ fetch(`https://ghchart.rshah.org/${argv.githubUser}`)
 
     return fs.writeFile(argv.output, chart, 'utf-8');
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

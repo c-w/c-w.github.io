@@ -16,11 +16,11 @@
   class WrappingArray<T> {
     private xMax: number;
     private yMax: number;
-    private array: Array<Array<T | undefined>>;
+    private array: (T | undefined)[][];
 
-    constructor(entries: Array<IEntry<T>>) {
-      const xMax = Math.max(...entries.map(entry => entry.x)) + 1;
-      const yMax = Math.max(...entries.map(entry => entry.y)) + 1;
+    constructor(entries: IEntry<T>[]) {
+      const xMax = Math.max(...entries.map((entry) => entry.x)) + 1;
+      const yMax = Math.max(...entries.map((entry) => entry.y)) + 1;
 
       const array = new Array(xMax);
       for (let i = 0; i < xMax; i++) {
@@ -64,7 +64,7 @@
     public static build(rootElement: Document) {
       const rects = rootElement.getElementsByTagName('rect');
 
-      const cells: Array<IEntry<ICell>> = [];
+      const cells: IEntry<ICell>[] = [];
 
       const xValues = new Set<number>();
       const yValues = new Set<number>();
@@ -129,7 +129,7 @@
       );
     }
 
-    private getNeighbors(x: number, y: number): Array<ICell | undefined> {
+    private getNeighbors(x: number, y: number): (ICell | undefined)[] {
       return [
         this.board.get(x - 1, y - 1),
         this.board.get(x, y - 1),
@@ -144,7 +144,7 @@
 
     private getNextState(x: number, y: number) {
       const numLiveNeighbors = this.getNeighbors(x, y).filter(
-        neighbor => neighbor != null && neighbor.state === 'alive'
+        (neighbor) => neighbor != null && neighbor.state === 'alive'
       ).length;
 
       const isAlive =
