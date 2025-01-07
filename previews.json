@@ -40,13 +40,8 @@
     "description": "Clemens Wolff and Shaun Bathgate go over using Flask and an Orange Pi to build a hardware appliance. The server is hosted on Azure."
   },
   "https://www.podcastinit.com/lokole-with-clemens-wolff-episode-167/": {
-    "image": "https://assets.podhome.fm/f6ff0caa-931b-4c08-bfdd-08dc7f5cd336/638525296494803510cover.jpg?389151414",
+    "image": "https://assets.podhome.fm/f6ff0caa-931b-4c08-bfdd-08dc7f5cd336/638525296494803510cover.jpg?259129107",
     "title": "Bringing Africa Online At Ascoderu with Clemens Wolff",
     "description": "<h3>Summary</h3>\n<p>The future is here, it&#8217;s just not evenly distributed. One of the places where this is especially true is in sub-Saharan Africa…"
-  },
-  "https://www.youtube.com/watch?v=-ej6lf9RfBQ#t=20m40s": {
-    "image": "https://i.ytimg.com/vi/-ej6lf9RfBQ/maxresdefault.jpg",
-    "title": "#Code & Coffee – June 22, 2017",
-    "description": ""
   }
 }
